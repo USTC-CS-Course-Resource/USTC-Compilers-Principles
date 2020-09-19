@@ -21,13 +21,13 @@ my_sort:
         jmp     .L3
 .L5:
         movl    -12(%rbp), %eax
-        cltq
+        cltq                                # 将32位%eax扩展为64位%rax
         leaq    0(,%rax,4), %rdx
         movq    -24(%rbp), %rax
         addq    %rdx, %rax
         movl    (%rax), %edx
         movl    -8(%rbp), %eax
-        cltq
+        cltq                                # 将32位%eax扩展为64位%rax
         leaq    0(,%rax,4), %rcx
         movq    -24(%rbp), %rax
         addq    %rcx, %rax
@@ -35,26 +35,26 @@ my_sort:
         cmpl    %eax, %edx
         jle     .L4
         movl    -12(%rbp), %eax
-        cltq
+        cltq                                # 将32位%eax扩展为64位%rax
         leaq    0(,%rax,4), %rdx
         movq    -24(%rbp), %rax
         addq    %rdx, %rax
         movl    (%rax), %eax
         movl    %eax, -4(%rbp)
         movl    -12(%rbp), %eax
-        cltq
+        cltq                                # 将32位%eax扩展为64位%rax
         leaq    0(,%rax,4), %rdx
         movq    -24(%rbp), %rax
         addq    %rax, %rdx
         movl    -8(%rbp), %eax
-        cltq
+        cltq                                # 将32位%eax扩展为64位%rax
         leaq    0(,%rax,4), %rcx
         movq    -24(%rbp), %rax
         addq    %rcx, %rax
         movl    (%rax), %eax
         movl    %eax, (%rdx)
         movl    -8(%rbp), %eax
-        cltq
+        cltq                                # 将32位%eax扩展为64位%rax
         leaq    0(,%rax,4), %rdx
         movq    -24(%rbp), %rax
         addq    %rax, %rdx
@@ -99,15 +99,15 @@ main:
         movq    %rax, -8(%rbp)
         xorl    %eax, %eax
         leaq    -28(%rbp), %rax
-        movq    %rax, %rsi
-        movl    $.LC0, %edi
-        movl    $0, %eax
-        call    __isoc99_scanf
-        movl    -28(%rbp), %eax
-        cltq
+        movq    %rax, %rsi                  # 为scanf传参(&n)                   -------\
+        movl    $.LC0, %edi                 # 为scanf传参("%d")                        |
+        movl    $0, %eax                    #                                         | scanf("%d", &n);
+        call    __isoc99_scanf              # 调用scanf                        -------/
+        movl    -28(%rbp), %eax             # %eax = n                               
+        cltq                                # 扩展%eax的32位到%rax的64位
         salq    $2, %rax
-        movq    %rax, %rdi
-        call    malloc
+        movq    %rax, %rdi                  # 为malloc传参                      -------\
+        call    malloc                      # 调用malloc                        -------/ malloc(sizeof(int)*n)
         movq    %rax, -16(%rbp)
         movl    $0, -24(%rbp)
         jmp     .L8
@@ -117,31 +117,31 @@ main:
         leaq    0(,%rax,4), %rdx
         movq    -16(%rbp), %rax
         addq    %rdx, %rax
-        movq    %rax, %rsi
-        movl    $.LC0, %edi
-        movl    $0, %eax
-        call    __isoc99_scanf
+        movq    %rax, %rsi                  # 为scanf传参(&n)                   -------\
+        movl    $.LC0, %edi                 # 为scanf传参("%d")                        |
+        movl    $0, %eax                    #                                         | scanf("%d", &n);
+        call    __isoc99_scanf              # 调用scanf                        -------/
         addl    $1, -24(%rbp)
 .L8:
         movl    -28(%rbp), %eax
         cmpl    %eax, -24(%rbp)
         jl      .L9
         movl    -28(%rbp), %edx
-        movq    -16(%rbp), %rax
-        movl    %edx, %esi
-        movq    %rax, %rdi
-        call    my_sort
+        movq    -16(%rbp), %rax             # %rax = nums
+        movl    %edx, %esi                  # 为my_sort传参(n)                 -------\
+        movq    %rax, %rdi                  # 为my_sort传参(nums)                     | my_sort(nums, n);
+        call    my_sort                     # 调用my_sort                     -------/
         movq    -16(%rbp), %rax
         movl    (%rax), %eax
-        movl    %eax, %esi
-        movl    $.LC0, %edi
-        movl    $0, %eax
-        call    printf
+        movl    %eax, %esi                  # 为printf传参(nums[0])            -------\
+        movl    $.LC0, %edi                 # 为printf传参("%d")                      | printf("%d", nums[0]);
+        movl    $0, %eax                    #                                        |
+        call    printf                      # 调用printf                      -------/
         movl    $1, -20(%rbp)
         jmp     .L10
 .L11:
         movl    -20(%rbp), %eax
-        cltq
+        cltq                                # 将32位%eax扩展为64位%rax
         leaq    0(,%rax,4), %rdx
         movq    -16(%rbp), %rax
         addq    %rdx, %rax
@@ -155,13 +155,13 @@ main:
         movl    -28(%rbp), %eax
         cmpl    %eax, -20(%rbp)
         jl      .L11
-        movl    $10, %edi
-        call    putchar
+        movl    $10, %edi                   # 为putchar传参('\n')              -------\ putchar('\n')
+        call    putchar                     # 调用putchar                      -------/
         movl    $0, %eax
         movq    -8(%rbp), %rcx
-        xorq    %fs:40, %rcx
-        je      .L13
-        call    __stack_chk_fail
+        xorq    %fs:40, %rcx                #                                 -------\
+        je      .L13                        #                                        | 栈检验
+        call    __stack_chk_fail            #                                 -------/
 .L13:
         leave
         .cfi_def_cfa 7, 8
