@@ -13,9 +13,21 @@
 
 这里有个小问题: 例如你在64位的Ubuntu上运行生成32位代码, 可能会找不到头文件. 可以通过命令`sudo apt install lib32z1 lib32z1-dev`来安装.
 
-## 问题回答
+## 问题回答<a id="content"></a>
 
-### gcc, 32位
+接下来针对 `gcc-32`, `gcc-64`, `clang-32`, `clang-64`分别注释.  
+因为有篇幅问题, 这里给出超链接[gcc-32](#gcc-32), [gcc-64](#gcc-64), [clang-32](#clang-32), [clang-64](#clang-64)(点击标题也可跳转回来)
+其中对`gcc-32`的注释是完全详细的版本, 对其他的注释则是增量注释(有不同之处才注释)  
+
+为了表明我确实完整地读过四个汇编代码, 这里先将一些主要特点(没有提到的特点可能是过于平凡或前面H1, H2有提到)用表格的形式给出.
+||gcc-32|gcc-64|clang-32|clang-64|
+|:-|:-|:-|:-|:-|
+|函数参数传递|栈(push为主)|寄存器(%rsi等)优先|栈(mov为主)|寄存器(%rsi等)优先|
+|函数返回值|%eax|%rax|%eax|%rax|
+|特别的指令|X|`cltq`(符号扩展)等|X|用`movabsq`读取标签位置<br>用`movslq`进行带符号扩展的`mov`|
+|特别的编译|存在栈检查的操作<br>`printf("\n")`改为`putchar`|存在栈检查的操作<br>`printf("\n")`改为`putchar`|没有栈检查|没有栈检查|
+
+### <a id="gcc-32"></a>[gcc, 32位](#content)
 
 首先展示对gcc, 32位下的汇编码的注释.
 我对每一句汇编代码都作了一定解释, 并且对相对完整的每块代码注释了其在源代码中的对应语句.(可能需要拖动滚动条才能看到右边的注释)
@@ -204,7 +216,7 @@ main:
         .section        .note.GNU-stack,"",@progbits
 ```
 
-### gcc, 64位
+### <a id="gcc-64"></a>[gcc, 64位](#content)
 
 `gcc, 64位`与`gcc, 32位`的主要区别在于:
 - 调用函数的参数传递借助`%rdi`，`%rsi`，`%rdx`，`%rcx`，`%r8`，`%r9`等寄存器, 非必要时候不使用栈
@@ -388,7 +400,7 @@ main:
         .section        .note.GNU-stack,"",@progbits
 ```
 
-### clang, 32位
+### <a id="clang-32"></a>[clang, 32位](#content)
 
 特点在于:
 - 调用函数时的传参用栈, 但是直接使用了`mov`而不是`push`
@@ -578,7 +590,7 @@ main:                                   # @main
         .addrsig_sym printf
 ```
 
-### clang, 64位
+### <a id="clang-64"></a>[clang, 64位](#content)
 
 特点在于:
 - 用`movabsq`取标签的地址(而不是`lea`)
