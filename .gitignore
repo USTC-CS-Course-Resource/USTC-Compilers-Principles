@@ -1,2 +1,9 @@
 *
 !.gitignore
+!labs/HW1/HW/H1
+!labs/HW1/HW/H2
+!labs/HW1/HW/H3/c/*.s
+!labs/HW1/HW/H3/c/sort.c
+!labs/HW1/HW/H3/c/Makefile
+!labs/HW1/HW/H3/题目.md
+!labs/HW1/HW/H3/answer.md
