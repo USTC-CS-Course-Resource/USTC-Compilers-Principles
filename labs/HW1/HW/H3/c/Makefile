@@ -1,3 +1,9 @@
+# Usage:
+# `gcc`, 32位: `make -B CC=gcc FLAGS=-m32`
+# `gcc`, 64位: `make -B CC=gcc FLAGS=-m64`
+# `clang`, 32位: `make -B CC=clang FLAGS=-m32`
+# `clang`, 64位: `make -B CC=clang FLAGS=-m64`
+
 CC=gcc
 TARGET=sort
 FLAGS=-m64
