@@ -78,11 +78,11 @@ main:                                   # @main
         movl    %esp, %ebp
         subl    $40, %esp
         movl    $0, -4(%ebp)
-        leal    .L.str, %eax
-        movl    %eax, (%esp)
-        leal    -8(%ebp), %eax
-        movl    %eax, 4(%esp)
-        calll   __isoc99_scanf
+        leal    .L.str, %eax            # %eax = "%d"的地址                     -------\
+        movl    %eax, (%esp)            # 传参("%d")                                   |
+        leal    -8(%ebp), %eax          # %eax = &n                                   | scanf("%d", &n);
+        movl    %eax, 4(%esp)           # 传参&n                                       |
+        calll   __isoc99_scanf          # 调用scanf                             -------/
         movl    -8(%ebp), %ecx
         shll    $2, %ecx
         movl    %ecx, (%esp)
@@ -99,21 +99,21 @@ main:                                   # @main
         movl    -16(%ebp), %ecx
         shll    $2, %ecx
         addl    %ecx, %eax
-        leal    .L.str, %ecx
-        movl    %ecx, (%esp)
-        movl    %eax, 4(%esp)
-        calll   __isoc99_scanf
+        leal    .L.str, %ecx            # %eax = "%d"的地址                     -------\
+        movl    %ecx, (%esp)            # 传参("%d")                                   |
+        movl    %eax, 4(%esp)           # 传参nums + i                                 | scanf("%d", nums+i);
+        calll   __isoc99_scanf          # 调用scanf                             -------/
 # %bb.3:                                #   in Loop: Header=BB1_1 Depth=1
         movl    -16(%ebp), %eax
         addl    $1, %eax
         movl    %eax, -16(%ebp)
         jmp     .LBB1_1
 .LBB1_4:
-        movl    -12(%ebp), %eax
-        movl    -8(%ebp), %ecx
-        movl    %eax, (%esp)
-        movl    %ecx, 4(%esp)
-        calll   my_sort
+        movl    -12(%ebp), %eax         # %eax = num                           -------\
+        movl    -8(%ebp), %ecx          # %eax = n                                    |
+        movl    %eax, (%esp)            # 传参num                                      | my_sort(nums, n);
+        movl    %ecx, 4(%esp)           # 传参n                                        |
+        calll   my_sort                 # 调用my_sort                          -------/
         movl    -12(%ebp), %eax
         movl    (%eax), %eax
         leal    .L.str, %ecx
