@@ -30,26 +30,26 @@ my_sort:                                # @my_sort
         jge     .LBB0_8
 # %bb.4:                                #   in Loop: Header=BB0_3 Depth=2
         movq    -8(%rbp), %rax
-        movslq  -16(%rbp), %rcx
+        movslq  -16(%rbp), %rcx         # 使用`movslq`进行带符号扩展的mov
         movl    (%rax,%rcx,4), %edx
         movq    -8(%rbp), %rax
-        movslq  -20(%rbp), %rcx
+        movslq  -20(%rbp), %rcx         # 使用`movslq`进行带符号扩展的mov
         cmpl    (%rax,%rcx,4), %edx
         jle     .LBB0_6
 # %bb.5:                                #   in Loop: Header=BB0_3 Depth=2
         movq    -8(%rbp), %rax
-        movslq  -16(%rbp), %rcx
+        movslq  -16(%rbp), %rcx         # 使用`movslq`进行带符号扩展的mov
         movl    (%rax,%rcx,4), %edx
         movl    %edx, -24(%rbp)
         movq    -8(%rbp), %rax
-        movslq  -20(%rbp), %rcx
+        movslq  -20(%rbp), %rcx         # 使用`movslq`进行带符号扩展的mov
         movl    (%rax,%rcx,4), %edx
         movq    -8(%rbp), %rax
-        movslq  -16(%rbp), %rcx
+        movslq  -16(%rbp), %rcx         # 使用`movslq`进行带符号扩展的mov
         movl    %edx, (%rax,%rcx,4)
         movl    -24(%rbp), %edx
         movq    -8(%rbp), %rax
-        movslq  -20(%rbp), %rcx
+        movslq  -20(%rbp), %rcx         # 使用`movslq`进行带符号扩展的mov
         movl    %edx, (%rax,%rcx,4)
 .LBB0_6:                                #   in Loop: Header=BB0_3 Depth=2
         jmp     .LBB0_7
@@ -86,11 +86,11 @@ main:                                   # @main
         .cfi_def_cfa_register %rbp
         subq    $32, %rsp
         movl    $0, -4(%rbp)
-        movabsq $.L.str, %rdi
+        movabsq $.L.str, %rdi           # 用movabsq取字符串地址
         leaq    -8(%rbp), %rsi
         movb    $0, %al
         callq   __isoc99_scanf
-        movslq  -8(%rbp), %rcx
+        movslq  -8(%rbp), %rcx         # 使用`movslq`进行带符号扩展的mov
         shlq    $2, %rcx
         movq    %rcx, %rdi
         movl    %eax, -28(%rbp)         # 4-byte Spill
@@ -103,10 +103,10 @@ main:                                   # @main
         jge     .LBB1_4
 # %bb.2:                                #   in Loop: Header=BB1_1 Depth=1
         movq    -16(%rbp), %rax
-        movslq  -20(%rbp), %rcx
+        movslq  -20(%rbp), %rcx         # 使用`movslq`进行带符号扩展的mov
         shlq    $2, %rcx
         addq    %rcx, %rax
-        movabsq $.L.str, %rdi
+        movabsq $.L.str, %rdi           # 用movabsq取字符串地址
         movq    %rax, %rsi
         movb    $0, %al
         callq   __isoc99_scanf
@@ -121,7 +121,7 @@ main:                                   # @main
         callq   my_sort
         movq    -16(%rbp), %rax
         movl    (%rax), %esi
-        movabsq $.L.str, %rdi
+        movabsq $.L.str, %rdi           # 用movabsq取字符串地址
         movb    $0, %al
         callq   printf
         movl    $1, -24(%rbp)
@@ -131,9 +131,9 @@ main:                                   # @main
         jge     .LBB1_8
 # %bb.6:                                #   in Loop: Header=BB1_5 Depth=1
         movq    -16(%rbp), %rax
-        movslq  -24(%rbp), %rcx
+        movslq  -24(%rbp), %rcx         # 使用`movslq`进行带符号扩展的mov
         movl    (%rax,%rcx,4), %esi
-        movabsq $.L.str.1, %rdi
+        movabsq $.L.str.1, %rdi           # 用movabsq取字符串地址
         movb    $0, %al
         callq   printf
 # %bb.7:                                #   in Loop: Header=BB1_5 Depth=1
@@ -142,7 +142,7 @@ main:                                   # @main
         movl    %eax, -24(%rbp)
         jmp     .LBB1_5
 .LBB1_8:
-        movabsq $.L.str.2, %rdi
+        movabsq $.L.str.2, %rdi           # 用movabsq取字符串地址
         movb    $0, %al
         callq   printf
         movl    -4(%rbp), %ecx
