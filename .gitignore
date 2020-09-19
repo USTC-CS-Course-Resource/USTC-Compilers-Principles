@@ -1,5 +1,7 @@
 *
 !.gitignore
+!LICENSE
+!README.md
 !labs/HW1/HW/H1
 !labs/HW1/HW/H2
 !labs/HW1/HW/H3/c/*.s
