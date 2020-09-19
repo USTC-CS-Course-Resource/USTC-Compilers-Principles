@@ -52,4 +52,4 @@
 /usr/x86_64-linux-gnu/lib64
 /usr/x86_64-linux-gnu/lib
 ```
-3. 这一步需要链接上`libc.so`和`crt`文件, 即使用如下命令`gcc -nostdlib sample-io.c /usr/lib/x86_64-linux-gnu/crt1.o /usr/lib/x86_64-linux-gnu/crti.o /usr/lib/x86_64-linux-gnu/crtn.o -lc -o sample-io`. 其中`crt`文件是第一关介绍过的. 而`libc`文件则是`printf`等函数的库.
+3. 这一步需要链接上`libc.so`和`crt`文件, 即使用如下命令`gcc -nostdlib sample-io.c /usr/lib/x86_64-linux-gnu/crt1.o /usr/lib/x86_64-linux-gnu/crti.o /usr/lib/x86_64-linux-gnu/crtn.o -L/lib/x86_64-linux-gnu -lc -o sample-io`. 其中`crt`文件是第一关介绍过的. 而`libc`文件则是`printf`等函数的库.
