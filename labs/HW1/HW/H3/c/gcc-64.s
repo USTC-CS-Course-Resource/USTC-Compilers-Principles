@@ -101,7 +101,7 @@ main:
         leaq    -28(%rbp), %rax
         movq    %rax, %rsi                  # 为scanf传参(&n)                   -------\
         movl    $.LC0, %edi                 # 为scanf传参("%d")                        |
-        movl    $0, %eax                    #                                         | scanf("%d", &n);
+        movl    $0, %eax                    # 设置%eax为0                              | scanf("%d", &n);
         call    __isoc99_scanf              # 调用scanf                        -------/
         movl    -28(%rbp), %eax             # %eax = n                               
         cltq                                # 扩展%eax的32位到%rax的64位
