@@ -1,0 +1,14 @@
+build/
+bin/
+*.o
+*.class
+*.tokens
+*.interp
+*.java
+labLexer/image.png
+labLexer/README.md
+labLexer/labLexer-2
+labLexer/labLexer-2m
+labLexer/CMakeLists.txt
+README.md
+.antlr/

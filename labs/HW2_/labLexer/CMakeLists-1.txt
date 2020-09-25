@@ -1,0 +1,7 @@
+# CMake version
+# cmake_minimum_required(VERSION 3.10)
+# Project Name
+project(labLexer-1)
+
+
+add_executable(${PROJECT_NAME} src/labLexer-1.c)
