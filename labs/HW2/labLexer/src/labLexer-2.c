@@ -116,12 +116,12 @@ int lexer_next_state(const int cur_state, const char next_c) {
 }
 
 int get_relop_macro(const char* relop) {
-	if (strcmp(relop, ">")) return gtr;
-	else if (strcmp(relop, ">=")) return geq;
-	else if (strcmp(relop, "<")) return lss;
-	else if (strcmp(relop, "<=")) return leq;
-	else if (strcmp(relop, "<>")) return neq;
-	else if (strcmp(relop, "=")) return eql;
+	if (!strcmp(relop, ">")) return gtr;
+	else if (!strcmp(relop, ">=")) return geq;
+	else if (!strcmp(relop, "<")) return lss;
+	else if (!strcmp(relop, "<=")) return leq;
+	else if (!strcmp(relop, "<>")) return neq;
+	else if (!strcmp(relop, "=")) return eql;
 	else return -1;
 }
 
@@ -129,6 +129,8 @@ void getsym() {
 	int cur_state = STATE_START; // state of current processing str
 	char *end = str_start; // end pointer of current processing str
 	char tmp[32];
+	memset(id, 0, sizeof(char)*(al+1));
+	memset(tmp, 0, sizeof(char)*(al+1));
 	while(str_start <= str_line_end) {
 		int next_state = lexer_next_state(cur_state, *end);
 		switch (next_state)
@@ -142,7 +144,7 @@ void getsym() {
 			case STATE_G:
 				if (cur_state == STATE_DOING_OTHER) {
 					sym = ident;
-					sprintf(id, "%ld", end-str_start);
+					strncpy(id, str_start, end-str_start);
 					str_start = str_line_end+1;
 					return;
 				}
@@ -159,7 +161,7 @@ void getsym() {
 		case STATE_MODE2RELOP:
 			// mode to relop, meaning finish reading of `other`
 			sym = ident;
-			sprintf(id, "%ld", end-str_start);
+			strncpy(id, str_start, end-str_start);
 			str_start = end;
 			return;
 		case STATE_LE:
