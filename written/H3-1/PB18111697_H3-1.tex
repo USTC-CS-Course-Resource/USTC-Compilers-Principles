@@ -1,0 +1,356 @@
+\documentclass[UTF8]{article}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{makecell}
+\usepackage[utf8]{inputenc}
+\usepackage[space]{ctex} %中文包
+\usepackage{listings} %放代码
+\usepackage{xcolor} %代码着色宏包
+\usepackage{CJK} %显示中文宏包
+\usepackage{float}
+\usepackage{makecell}
+\usepackage{diagbox}
+\usepackage{bm}
+\usepackage{ulem} 
+\usepackage{amssymb}
+\usepackage{soul}
+\usepackage{color}
+\usepackage{geometry}
+\usepackage{fancybox} %花里胡哨的盒子
+\usepackage{xhfill} %填充包, 可画分割线 https://www.latexstudio.net/archives/8245
+\usepackage{multicol} %多栏包
+\usepackage{enumerate} %可以方便地自定义枚举标题
+\usepackage{multirow} %表格中多行单元格合并
+\usepackage{wasysym} %可以使用wasysym里的一堆奇奇怪怪的符号
+%%%%%%%%%%%%%%%伪代码%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+%%%%%%%%%%%%%%%画图包%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usepackage{tikZ-timing} % 时序图支持
+\usepackage{pgfplots} % http://pgfplots.sourceforge.net/gallery.html
+\usetikzlibrary{pgfplots.patchplots} % 拟合支持
+\usetikzlibrary{arrows,shapes,automata,petri,positioning,calc} % 状态图支持
+\usetikzlibrary{shadows} % 阴影支持
+\usepackage{forest} % 画树
+
+\geometry{left = 1.5cm, right = 1.5cm, top=1.5cm, bottom=2cm}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstset{
+	backgroundcolor=\color{white}, 
+	%\tiny < \scriptsize < \footnotesize < \small < \normalsize < \large < \Large < \LARGE < \huge < \Huge
+	basicstyle = \footnotesize,       
+	breakatwhitespace = false,        
+	breaklines = true,                 
+	captionpos = b,                    
+	commentstyle = \color{mygreen}\bfseries,
+	extendedchars = false,
+	frame = shadowbox, 
+	framerule=0.5pt,
+	keepspaces=true,
+	keywordstyle=\color{blue}\bfseries, % keyword style
+	language = C++,                     % the language of code
+	otherkeywords={string}, 
+	numbers=left, 
+	numbersep=5pt,
+	numberstyle=\tiny\color{mygray},
+	rulecolor=\color{black},         
+	showspaces=false,  
+	showstringspaces=false, 
+	showtabs=false,    
+	stepnumber=1,         
+	stringstyle=\color{mymauve},        % string literal style
+	tabsize=4,          
+	title=\lstname           
+}
+
+%\sum\nolimits_{j=1}^{M}   上下标位于求和符号的水平右端，
+%\sum\limits_{j=1}^{M}   上下标位于求和符号的上下处，
+%\sum_{j=1}^{M}  对上下标位置没有设定，会随公式所处环境自动调整。
+
+%%%%%%%%%%%%%画图包%%%%%%%%%%%%%
+\usepackage{tikz}
+%%%%%%%%%%%%%好看的矩形%%%%%%%%%%%%%
+\tikzset{
+  rect1/.style = {
+    shape = rectangle,% 指定样式
+    minimum height=2cm,% 最小高度
+    minimum width=4cm,% 最小宽度
+    align = center,% 文字居中
+    drop shadow,% 阴影
+  }
+}
+%%%%%%%%%%%%%画图背景包%%%%%%%%%%%%%
+\usetikzlibrary{backgrounds}
+
+%%%%%%%%%%%%%在tikz中画一个顶点%%%%%%%%%%%%%
+%%%%%%%%%%%%%#1:node名称%%%%%%%%%%%%%
+%%%%%%%%%%%%%#2:位置%%%%%%%%%%%%%
+%%%%%%%%%%%%%#3:标签%%%%%%%%%%%%%
+\newcommand{\newVertex}[3]{\node[circle, draw=black, line width=1pt, scale=0.8] (#1) at #2{#3}}
+%%%%%%%%%%%%%在tikz中画一条边%%%%%%%%%%%%%
+\newcommand{\newEdge}[2]{\draw [black,very thick](#1)--(#2)}
+%%%%%%%%%%%%%在tikz中放一个标签%%%%%%%%%%%%%
+%%%%%%%%%%%%%#1:名称%%%%%%%%%%%%%
+%%%%%%%%%%%%%#2:位置%%%%%%%%%%%%%
+%%%%%%%%%%%%%#3:标签内容%%%%%%%%%%%%%
+\newcommand{\newLabel}[3]{\node[line width=1pt] (#1) at #2{#3}}
+
+%%%%%%%%%%%%%强制跳过一行%%%%%%%%%%%%%
+\newcommand{\jumpLine} {\hspace*{\fill} \par}
+%%%%%%%%%%%%%关键点指令,可用itemise替代%%%%%%%%%%%%%
+\newcommand{\average}[1]{\left\langle #1\right\rangle }
+%%%%%%%%%%%%%表格内嵌套表格%%%%%%%%%%%%%
+\newcommand{\keypoint}[2]{$\bullet$\textbf{#1}\quad#2\par}
+%%%%%%%%%%%%%<T>平均值表示%%%%%%%%%%%%%
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}%放在导言区
+%%%%%%%%%%%%%大黑点item头%%%%%%%%%%%%%
+\newcommand{\itemblt}{\item[$\bullet$]}
+%%%%%%%%%%%%%大圈item头%%%%%%%%%%%%%
+\newcommand{\itemc}{\item[$\circ$]}
+%%%%%%%%%%%%%大星星item头%%%%%%%%%%%%%
+\newcommand{\itembs}{\item[$\bigstar$]}
+%%%%%%%%%%%%%右▷item头%%%%%%%%%%%%%
+\newcommand{\itemrhd}{\item[$\rhd$]}
+%%%%%%%%%%%%%定义为%%%%%%%%%%%%%
+\newcommand{\defas}{=_{df}}
+%%%%%%%%%%%%%蕴含%%%%%%%%%%%%%
+\newcommand{\imp}{\rightarrow}
+
+%%%%%%%%%%%%%双线分割线%%%%%%%%%%%%%
+\newcommand*{\doublerule}{\hrule width \hsize height 1pt \kern 0.5mm \hrule width \hsize height 2pt}
+%%%%%%%%%%%%%双线中间可加东西的分割线%%%%%%%%%%%%%
+\newcommand\doublerulefill{\leavevmode\leaders\vbox{\hrule width .1pt\kern1pt\hrule}\hfill\kern0pt }
+%%%%%%%%%%%%%左大括号%%%%%%%%%%%%%
+\newcommand{\leftbig}[1]{\left\{\begin{array}{l}#1\end{array}\right.}
+%%%%%%%%%%%%%矩阵%%%%%%%%%%%%%
+\newcommand{\mat}[2]{\left[\begin{array}{#1}#2\end{array}\right]}
+%%%%%%%%%%%%%可换行圆角文本框%%%%%%%%%%%%%
+\newcommand{\ovalboxn}[1]{\ovalbox{\tabincell{l}{#1}}}
+%%%%%%%%%%%%%设置section的counter, 使从1开始%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%Colors%%%%%%%%%%%%%
+\definecolor{aquamarine}{rgb}{0.5, 1.0, 0.83}
+
+\setcounter{section}{0}
+
+
+\title{编译原理与技术 H2}
+\date{}
+\author{PB18111697 王章瀚}
+
+\begin{document}
+\maketitle
+
+\section*{3.2}
+\noindent 考虑文法$S\rightarrow aSbS|bSaS|\epsilon$
+\begin{enumerate}[(a) ]
+\item 为句子$abab$构造两个不同的最左推导, 以此说明该文法是二义的.\\
+	构造如下:
+	\begin{enumerate}[1. ]
+	\item $S \Rightarrow_{lm} aSbS \Rightarrow_{lm} abS \Rightarrow_{lm} abaSbS \Rightarrow_{lm} ababS \Rightarrow_{lm} abab$
+	\item $S \Rightarrow_{lm} aSbS \Rightarrow_{lm} abSaSbS \Rightarrow_{lm} abaSbS \Rightarrow_{lm} ababS \Rightarrow_{lm} abab$
+	\end{enumerate}
+\item 为$abab$构造对应的最右推导.\\
+	构造如下:
+	\begin{enumerate}[1. ]
+	\item $S \Rightarrow_{rm} aSbS \Rightarrow_{rm} aSb \Rightarrow_{rm} abSaSb \Rightarrow_{rm} abSab \Rightarrow_{rm} abab$
+	\item $S \Rightarrow_{rm} aSbS \Rightarrow_{rm} aSbaSbS \Rightarrow_{rm} aSbaSb \Rightarrow_{rm} aSbab \Rightarrow_{rm} abab$
+	\end{enumerate}
+\item 为$abab$构造对应的分析树.\\
+	\begin{minipage}{0.5\linewidth}
+	以(a)中1为例:\\
+	\begin{forest}
+	[$S$, for tree={fill=aquamarine}
+		[$a$]
+		[$S$
+			[$\epsilon$]
+		]
+		[$b$]
+		[$S$
+			[$a$]
+			[$S$
+				[$\epsilon$]
+			]
+			[$b$]
+			[$S$
+				[$\epsilon$]
+			]
+		]
+	];
+	\end{forest}
+	\end{minipage}
+	\begin{minipage}{0.5\linewidth}
+	以(a)中2为例:\\
+	\begin{forest}
+	[$S$, for tree={fill=aquamarine}
+		[$a$]
+		[$S$
+			[$b$]
+			[$S$
+				[$\epsilon$]
+			]
+			[$a$]
+			[$S$
+				[$\epsilon$]
+			]
+		]
+		[$b$]
+		[$S$
+			[$\epsilon$]
+		]
+	];
+	\end{forest}
+	\end{minipage}
+\item 这个文法产生的语言是什么?\\
+	产生的语言是: \textbf{由同样数目的$\bm{a}$和$\bm{b}$的串的集合}.
+\end{enumerate}
+
+\section*{3.6}
+\noindent 为字母表$\Sigma=\{a,b\}$上的下列每个语言设计一个文法, 其中哪些语言是正规的?
+\begin{enumerate}
+\item[($a$) ] 每个$a$后面至少有一个$b$跟随的所有串.\\
+	设计的文法对应四元组为$(\{a,b\},\{S,B\}, S, P)$. 按以$a$或$b$开头, 可以得到其中产生式的集合P如下: 
+	$$S \rightarrow aB|B$$
+	$$B \rightarrow bB|\epsilon$$
+	这个语言\textbf{是正规的}.按定义说, 其产生式满足形式为$A\rightarrow aB$或$A\rightarrow a$. 另一方面, 这个语言可以用$(abb^*|b^*)^*$表示, 从这个角度也可以说明\textbf{是正规的}.
+\item[($c$) ] {$a$和$b$的个数不相等的所有串.}\\
+	首先考虑$a$和$b$个数相等的串, 其产生式如下($B$表示$b$比$a$多一个的串, $A$类似):
+	$$\begin{array}{l}
+	S\rightarrow aB|bA|\epsilon\\
+	A\rightarrow bAA|aS\\
+	B\rightarrow aBB|bS
+	\end{array}$$
+	然后考虑$A'$为$a$个数多余$b$个数的串, $B'$类似.
+	$$\begin{array}{l}
+	A'\rightarrow AA'|A\\
+	B'\rightarrow BB'|B
+	\end{array}$$
+	最终我们可以写出来, 能够表示$a$和$b$个数不相等的所有串($S'$表示)的文法如下:
+	$$\begin{array}{l}
+	\bm{S'\rightarrow A'|B'}\\
+	\bm{A'\rightarrow AA'|A}\\
+	\bm{B'\rightarrow BB'|B}\\
+	\bm{S\rightarrow aB|bA|\epsilon}\\
+	\bm{A\rightarrow bAA|aS}\\
+	\bm{B\rightarrow aBB|bS}
+	\end{array}$$
+	这个文法\textbf{不是正规的}. 因为它显然不满足任何产生式都为$A\rightarrow aB$或$A\rightarrow a$, $A,B\in V_N,a\in V_T$的格式.
+	
+\end{enumerate}
+
+\section*{3.8}
+\begin{enumerate}
+\item[(a) ] 消除习题3.1文法($S\rightarrow (L)|a\quad L\rightarrow L,S|S)$的左递归.\\
+	也就是消除下式的左递归:
+	$$\begin{array}{l}
+	S \rightarrow (L)|a\\
+	L\rightarrow L,S|S
+	\end{array}$$
+	因此可以改写为:
+	$$\begin{array}{l}
+	\bm{S \rightarrow (L)|a}\\
+	\bm{L \rightarrow SL'}\\
+	\bm{L' \rightarrow ,aS|\epsilon}
+	\end{array}$$
+\end{enumerate}
+
+\section*{3.11}
+\noindent 构造下面文法的LL(1)分析表.
+\begin{enumerate}[]
+\item $S\rightarrow aBS|bAS|\epsilon$
+\item $A\rightarrow bAA|a$
+\item $B\rightarrow aBB|b$
+\end{enumerate}
+构造如下(表\ref{3.11.analysis_table}):\\
+\begin{minipage}{0.5\linewidth}
+\centering
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+ & 开始符号 & 后继符号 \\
+\hline
+$S$ & $a,b,\epsilon$ & $\$$ \\
+\hline
+$A$ & $a,b$ & $a,b,\$$ \\
+\hline
+$B$ & $a,b$ & $a,b,\$$ \\
+\hline
+\end{tabular}
+\caption{开始符号和后继符号的表}
+\end{table}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\multirow{2}{*}{非终结符} & \multicolumn{3}{c|}{输入符号} \\
+\cline{2-4}
+ & $a$ & $b$ & $\$$ \\
+\hline
+$S$ & $S \rightarrow aBS$ & $S \rightarrow bAS$ & $S \rightarrow \epsilon$ \\
+\hline
+$A$ & $A\rightarrow a$ & $A\rightarrow bAA$ &  \\
+\hline
+$B$ & $B\rightarrow b$ & $B\rightarrow aBB$ &  \\
+\hline
+\end{tabular}
+\caption{预测分析表}
+\label{3.11.analysis_table}
+\end{table}
+\end{minipage}
+
+\section*{3.12}
+\noindent 下面的文法是否为LL(1)文法? 说明理由.
+\begin{enumerate}[]
+\item $S \rightarrow AB|PQx$
+\item $A \rightarrow xy$
+\item $B \rightarrow bc$
+\item $P \rightarrow dP|\epsilon$
+\item $Q \rightarrow aQ|\epsilon$
+\end{enumerate}
+
+\noindent 构造下表(表\ref{3.12.start})\\
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+ & 开始符号 \\
+\hline
+$S$ & $x,d,\epsilon$ \\
+\hline
+$A$ & $x$ \\
+\hline
+$B$ & $b$ \\
+\hline
+$P$ & $d,\epsilon$ \\
+\hline
+$Q$ & $a,\epsilon$ \\
+\hline
+\end{tabular}
+\caption{开始符号表}
+\label{3.12.start}
+\end{table}
+\noindent 从而有
+$$\begin{array}{l}
+FIRST(AB)=\{x\}
+FIRST(PQx)=\{a,d,x\}
+FIRST(AB)\cap FIRST(PQx)\supset\{x\}
+\end{array}$$
+因此该文法\textbf{不是}LL(1)文法.
+
+\end{document}
+
+
+
+
+
+
+
