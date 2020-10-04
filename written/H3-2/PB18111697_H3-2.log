@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.3.1)  4 OCT 2020 01:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.3.1)  4 OCT 2020 12:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**PB18111697_H3-1.tex
-(./PB18111697_H3-1.tex
+**PB18111697_H3-2.tex
+(./PB18111697_H3-2.tex
 LaTeX2e <2018-12-01>
 (g:/texlive/2019/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
@@ -1497,8 +1497,8 @@ File: UTF8.enc 2015/04/18 4.8.4
 (g:/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
 File: UTF8.chr 2015/04/18 4.8.4
 )
-(./PB18111697_H3-1.aux)
-\openout1 = `PB18111697_H3-1.aux'.
+(./PB18111697_H3-2.aux)
+\openout1 = `PB18111697_H3-2.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 147.
 LaTeX Font Info:    ... okay on input line 147.
@@ -1705,88 +1705,49 @@ File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 )
 
 LaTeX Font Warning: Font shape `U/wasy/m/n' in size <10.53937> not available
-(Font)              size <10.95> substituted on input line 151.
+(Font)              size <10.95> substituted on input line 152.
 
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-
-Overfull \hbox (2.34209pt too wide) in paragraph at lines 165--210
-[]$ $[]$ 
- []
-
+Package CJKpunct Info: use punctuation spaces for family 'rm' with punctstyle (
+quanjiao) on input line 221.
 [1
 
-]
-
-LaTeX Warning: The counter will not be printed.
-             The label is:  on input line 265.
-
-
-Overfull \hbox (2.34207pt too wide) in paragraph at lines 270--309
-[]$ $[]$ 
- []
-
-[2]
-
-LaTeX Warning: The counter will not be printed.
-             The label is:  on input line 312.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 320--340
-
- []
-
-[3] (./PB18111697_H3-1.aux)
+] [2] (./PB18111697_H3-2.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.41063pt have occurred.
 
  ) 
 Here is how much of TeX's memory you used:
- 53877 strings out of 492623
- 1264121 string characters out of 6133291
- 1604768 words of memory out of 5000000
- 56828 multiletter control sequences out of 15000+600000
- 565799 words of font info for 149 fonts, out of 8000000 for 9000
+ 54526 strings out of 492623
+ 1277953 string characters out of 6133291
+ 1603769 words of memory out of 5000000
+ 57523 multiletter control sequences out of 15000+600000
+ 559319 words of font info for 125 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 133i,12n,160p,1591b,1880s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 163i,9n,181p,1591b,2292s stack positions out of 5000i,500n,10000p,200000b,80000s
 <c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/s
 imsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows
-/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:
-/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun
+/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:
+/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun
 .ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Font
 s/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Wind
 ows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc>
 <c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/sim
-sun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/F
-onts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/W
-indows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.t
+sun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/F
+onts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/W
+indows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.t
 tc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/
 simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Window
-s/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c
-:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsu
-n.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fon
-ts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Win
-dows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc
-><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/si
-msun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/
-Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/
-Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><g:/texlive/2019/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><g:/texlive/2019/texmf-dist/fonts
-/type1/public/amsfonts/cmextra/cmbsy7.pfb><g:/texlive/2019/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmbx10.pfb><g:/texlive/2019/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmbx12.pfb><g:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmmi10.pfb><g:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7
-.pfb><g:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><g:
-/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><g:/texlive/2
-019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><g:/texlive/2019/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><g:/texlive/2019/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmsy10.pfb><g:/texlive/2019/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmsy7.pfb>
-Output written on PB18111697_H3-1.pdf (3 pages, 361991 bytes).
+s/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><g:/texlive/2019/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmbx12.pfb><g:/texlive/2019/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmmi10.pfb><g:/texlive/2019/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr10.pfb><g:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr12.pfb><g:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
+<g:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on PB18111697_H3-2.pdf (2 pages, 223275 bytes).
 PDF statistics:
- 376 PDF objects out of 1000 (max. 8388607)
- 232 compressed objects within 3 object streams
+ 248 PDF objects out of 1000 (max. 8388607)
+ 146 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 305 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 257 words of extra memory for PDF output out of 10000 (max. 10000000)
 
