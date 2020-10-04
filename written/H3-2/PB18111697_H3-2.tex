@@ -133,11 +133,12 @@
 %%%%%%%%%%%%%可换行圆角文本框%%%%%%%%%%%%%
 \newcommand{\ovalboxn}[1]{\ovalbox{\tabincell{l}{#1}}}
 %%%%%%%%%%%%%设置section的counter, 使从1开始%%%%%%%%%%%%%
+\setcounter{section}{0}
 
 %%%%%%%%%%%%%Colors%%%%%%%%%%%%%
 \definecolor{aquamarine}{rgb}{0.5, 1.0, 0.83}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
 
-\setcounter{section}{0}
 
 
 \title{编译原理与技术 H3-2}
@@ -152,6 +153,34 @@
 \item 用习题3.1的文法(如下)构造$(a, (a, a))$的最右推导, 说出每个右句型的句柄\\
 $S\rightarrow (L)|a$\\$L\rightarrow L,S|S$\\
 	最右推导为: $$S\rightarrow(L)\rightarrow(L,S)\rightarrow(L,(L))\rightarrow(L,(L,S)),\rightarrow(L,(L,a))\rightarrow(L,(S,a))\rightarrow(L,(a,a))\rightarrow(S,(a,a))\rightarrow(a,(a,a))$$
+	用红色标记出句柄如下:
+	$$S\rightarrow\red{(L)}\rightarrow(\red{L,S})\rightarrow(L,\red{(L)})\rightarrow(L,(\red{L,S})),\rightarrow(L,(L,\red{a}))\rightarrow(L,(\red{S},a))\rightarrow(L,(\red{a},a))\rightarrow(\red{S},(a,a))\rightarrow(\red{a},(a,a))$$
+	为方便对照, 对应句柄列表如下:\\
+	\begin{tabular}{|c|c|}
+	\hline
+	右句型 & 句柄 \\
+	\hline
+	$(L)$ & $(L)$ \\
+	\hline
+	$(L,S)$ & $L,S$ \\
+	\hline
+	$(L,(L))$ & $(L)$ \\
+	\hline
+	$(L,(L,S))$ & $L,S$ \\
+	\hline
+	$(L,(L,a))$ & $a$ \\
+	\hline
+	$(L,(S,a))$ & $S$ \\
+	\hline
+	$(L,(a,a))$ & $a$ \\
+	\hline
+	$(S,(a,a))$ & $S$ \\
+	\hline
+	$(a,(a,a))$ & $a$ \\
+	\hline
+	\end{tabular}
+	
+\newpage
 \item 给出对应(a)的最右推导的移进-归约分析器的步骤\\
 	\begin{tabular}{c|c|c}
 	\hline
@@ -196,11 +225,12 @@ $S\rightarrow (L)|a$\\$L\rightarrow L,S|S$\\
 	$\$S$ & $\$$ & 接受 \\
 	\hline
 	\end{tabular}
+	\newpage
 \item 对照(b)的移进-规约, 给出自下而上的构造分析树的步骤\\
 	如下:\\
 	\begin{forest}
-	where n children=0{tier=word} {s sep=5mm, l sep=(6-level)*4mm}
-	[$S$, before drawing tree={x-=15mm, y+=15mm}
+	where n children=0{tier=word}{}
+	[$S$, before drawing tree={x-=15mm, y+=15mm}, for tree={s sep=5mm, l sep=(6-level)*4mm}
 		[$($, before drawing tree={x-=15mm}]
 		[$L$
 			[$L$[$S$[$a$]]]
