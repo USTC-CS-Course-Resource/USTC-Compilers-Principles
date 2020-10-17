@@ -1,0 +1,585 @@
+\documentclass[UTF8]{article}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{makecell}
+\usepackage[utf8]{inputenc}
+\usepackage[space]{ctex} %中文包
+\usepackage{listings} %放代码
+\usepackage{xcolor} %代码着色宏包
+\usepackage{CJK} %显示中文宏包
+\usepackage{float}
+\usepackage{diagbox}
+\usepackage{bm}
+\usepackage{ulem} 
+\usepackage{amssymb}
+\usepackage{soul}
+\usepackage{color}
+\usepackage{geometry}
+\usepackage{fancybox} %花里胡哨的盒子
+\usepackage{xhfill} %填充包, 可画分割线 https://www.latexstudio.net/archives/8245
+\usepackage{multicol} %多栏包
+\usepackage{enumerate} %可以方便地自定义枚举标题
+\usepackage{multirow} %表格中多行单元格合并
+\usepackage{wasysym} %可以使用wasysym里的一堆奇奇怪怪的符号
+\usepackage{hyperref} % url
+%%%%%%%%%%%%%%%伪代码%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+%%%%%%%%%%%%%%%画图包%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usepackage{tikZ-timing} % 时序图支持
+\usepackage{pgfplots} % http://pgfplots.sourceforge.net/gallery.html
+\usetikzlibrary{pgfplots.patchplots} % 拟合支持
+\usetikzlibrary{arrows,shapes,automata,petri,positioning,calc} % 状态图支持
+\usetikzlibrary{arrows.meta} % 箭头
+\usetikzlibrary{shadows} % 阴影支持
+\usepackage{forest} % 画树
+
+\geometry{left = 1.5cm, right = 1.5cm, top=1.5cm, bottom=2cm}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstset{
+	backgroundcolor=\color{white}, 
+	%\tiny < \scriptsize < \footnotesize < \small < \normalsize < \large < \Large < \LARGE < \huge < \Huge
+	basicstyle = \footnotesize,       
+	breakatwhitespace = false,        
+	breaklines = true,                 
+	captionpos = b,                    
+	commentstyle = \color{mygreen}\bfseries,
+	extendedchars = false,
+	frame = shadowbox, 
+	framerule=0.5pt,
+	keepspaces=true,
+	keywordstyle=\color{blue}\bfseries, % keyword style
+	language = C++,                     % the language of code
+	otherkeywords={string}, 
+	numbers=left, 
+	numbersep=5pt,
+	numberstyle=\tiny\color{mygray},
+	rulecolor=\color{black},         
+	showspaces=false,  
+	showstringspaces=false, 
+	showtabs=false,    
+	stepnumber=1,         
+	stringstyle=\color{mymauve},        % string literal style
+	tabsize=4,          
+	title=\lstname           
+}
+
+%\sum\nolimits_{j=1}^{M}   上下标位于求和符号的水平右端，
+%\sum\limits_{j=1}^{M}   上下标位于求和符号的上下处，
+%\sum_{j=1}^{M}  对上下标位置没有设定，会随公式所处环境自动调整。
+
+%%%%%%%%%%%%%画图包%%%%%%%%%%%%%
+\usepackage{tikz}
+%%%%%%%%%%%%%好看的矩形%%%%%%%%%%%%%
+\tikzset{
+  rect1/.style = {
+    shape = rectangle,% 指定样式
+    minimum height=2cm,% 最小高度
+    minimum width=4cm,% 最小宽度
+    align = center,% 文字居中
+    drop shadow,% 阴影
+  }
+}
+%%%%%%%%%%%%%画图背景包%%%%%%%%%%%%%
+\usetikzlibrary{backgrounds}
+
+%%%%%%%%%%%%%在tikz中画一个顶点%%%%%%%%%%%%%
+%%%%%%%%%%%%%#1:node名称%%%%%%%%%%%%%
+%%%%%%%%%%%%%#2:位置%%%%%%%%%%%%%
+%%%%%%%%%%%%%#3:标签%%%%%%%%%%%%%
+\newcommand{\newVertex}[3]{\node[circle, draw=black, line width=1pt, scale=0.8] (#1) at #2{#3}}
+%%%%%%%%%%%%%在tikz中画一条边%%%%%%%%%%%%%
+\newcommand{\newEdge}[2]{\draw [black,very thick](#1)--(#2)}
+%%%%%%%%%%%%%在tikz中放一个标签%%%%%%%%%%%%%
+%%%%%%%%%%%%%#1:名称%%%%%%%%%%%%%
+%%%%%%%%%%%%%#2:位置%%%%%%%%%%%%%
+%%%%%%%%%%%%%#3:标签内容%%%%%%%%%%%%%
+\newcommand{\newLabel}[3]{\node[line width=1pt] (#1) at #2{#3}}
+
+%%%%%%%%%%%%%强制跳过一行%%%%%%%%%%%%%
+\newcommand{\jumpLine} {\hspace*{\fill} \par}
+%%%%%%%%%%%%%关键点指令,可用itemise替代%%%%%%%%%%%%%
+\newcommand{\average}[1]{\left\langle #1\right\rangle }
+%%%%%%%%%%%%%表格内嵌套表格%%%%%%%%%%%%%
+\newcommand{\keypoint}[2]{$\bullet$\textbf{#1}\quad#2\par}
+%%%%%%%%%%%%%<T>平均值表示%%%%%%%%%%%%%
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}%放在导言区
+%%%%%%%%%%%%%大黑点item头%%%%%%%%%%%%%
+\newcommand{\itemblt}{\item[$\bullet$]}
+%%%%%%%%%%%%%大圈item头%%%%%%%%%%%%%
+\newcommand{\itemc}{\item[$\circ$]}
+%%%%%%%%%%%%%大星星item头%%%%%%%%%%%%%
+\newcommand{\itembs}{\item[$\bigstar$]}
+%%%%%%%%%%%%%右▷item头%%%%%%%%%%%%%
+\newcommand{\itemrhd}{\item[$\rhd$]}
+%%%%%%%%%%%%%定义为%%%%%%%%%%%%%
+\newcommand{\defas}{=_{df}}
+%%%%%%%%%%%%%偏导%%%%%%%%%%%%%
+\newcommand{\partialx}[2]{\frac{\partial #1}{\partial #2}}
+%%%%%%%%%%%%%蕴含%%%%%%%%%%%%%
+\newcommand{\imp}{\rightarrow}
+%%%%%%%%%%%%%上取整%%%%%%%%%%%%%
+\newcommand{\ceil}[1]{\lceil#1\rceil}
+%%%%%%%%%%%%%下取整%%%%%%%%%%%%%
+\newcommand{\floor}[1]{\lfloor#1\rfloor}
+%%%%%%%%%%%%%textbullet%%%%%%%%%%%%%
+\newcommand{\blt}{\bullet}
+
+%%%%%%%%%%%%%双线分割线%%%%%%%%%%%%%
+\newcommand*{\doublerule}{\hrule width \hsize height 1pt \kern 0.5mm \hrule width \hsize height 2pt}
+%%%%%%%%%%%%%双线中间可加东西的分割线%%%%%%%%%%%%%
+\newcommand\doublerulefill{\leavevmode\leaders\vbox{\hrule width .1pt\kern1pt\hrule}\hfill\kern0pt }
+%%%%%%%%%%%%%左大括号%%%%%%%%%%%%%
+\newcommand{\leftbig}[1]{\left\{\begin{array}{l}#1\end{array}\right.}
+%%%%%%%%%%%%%矩阵%%%%%%%%%%%%%
+\newcommand{\mat}[2]{\left[\begin{array}{#1}#2\end{array}\right]}
+%%%%%%%%%%%%%可换行圆角文本框%%%%%%%%%%%%%
+\newcommand{\ovalboxn}[1]{\ovalbox{\tabincell{l}{#1}}}
+%%%%%%%%%%%%%设置section的counter, 使从1开始%%%%%%%%%%%%%
+\setcounter{section}{0}
+
+%%%%%%%%%%%%%Colors%%%%%%%%%%%%%
+\newcommand{\lightercolor}[3]{% Reference Color, Percentage, New Color Name
+    \colorlet{#3}{#1!#2!white}
+}
+\newcommand{\darkercolor}[3]{% Reference Color, Percentage, New Color Name
+    \colorlet{#3}{#1!#2!black}
+}
+\definecolor{aquamarine}{rgb}{0.5, 1.0, 0.83}
+\definecolor{Seashell}{RGB}{255, 245, 238} %背景色浅一点的
+\definecolor{Firebrick4}{RGB}{255, 0, 0}%文字颜色红一点的
+\lightercolor{gray}{20}{lgray}
+\newcommand{\hlg}[1]{
+	\begingroup
+		\sethlcolor{lgray}%背景色
+		\textcolor{black}{\hl{\mbox{#1}}}%textcolor里面对应文字颜色
+	\endgroup
+}
+
+
+
+\title{编译原理与技术 H4-1}
+\date{}
+\author{PB18111697 王章瀚}
+
+\begin{document}
+\maketitle
+\section*{3.19}
+\noindent 考虑下面的文法
+$$\begin{array}{l}
+E\rightarrow E+T|T\\
+T\rightarrow TF|F\\
+F\rightarrow F*|a|b
+\end{array}$$
+\subsection*{(a). 为此文法构造SLR分析表}
+\noindent 为了构造SLR分析表, 首先需要求出其LR(0)项目集规范族.\\
+\begin{itemize}
+\item 首先写出拓广的表达式文法
+$$\begin{array}{ll}
+ & E'\rightarrow E\\
+1 & E\rightarrow E+T\\
+2 & E\rightarrow T\\
+3 & T\rightarrow TF\\
+4 & T\rightarrow F\\
+5 & F\rightarrow F*\\
+6 & F\rightarrow a\\
+7 & F\rightarrow b
+\end{array}$$
+\item 求 $Closure(\{[E'\rightarrow E]\})$\\
+$I_0=Closure(\{[E'\rightarrow E]\})$应含有:
+$$I_0\left\{\begin{array}{ll}
+E'\rightarrow \blt E & T\rightarrow\blt F \\
+E\rightarrow \blt E+T & F\rightarrow\blt F* \\
+E\rightarrow \blt T & F\rightarrow\blt a \\
+T\rightarrow \blt TF & F\rightarrow\blt b \\
+\end{array}\right.$$
+\item 开始求相应LR(0)项目集规范族\\
+	\begin{itemize}
+	\item 从$I=I_0$出发:
+		\begin{itemize}
+		\item 对$X=E$, 得到$I_1$:
+		$$I_1\left\{\begin{array}{ll}
+		E'\rightarrow E\blt \\
+		E\rightarrow E\blt +T \\
+		\end{array}\right.$$
+		\item 对$X=T$, 得到$I_2$:
+		$$I_2\left\{\begin{array}{ll}
+		E\rightarrow T\blt & F\rightarrow\blt a \\
+		T\rightarrow T\blt F & F\rightarrow\blt b \\
+		& F\rightarrow\blt F* \\
+		\end{array}\right.$$
+		\item 对$X=F$, 得到$I_3$:
+		$$I_3\left\{\begin{array}{ll}
+		T\rightarrow F\blt\\
+		F\rightarrow F\blt * \\
+		\end{array}\right.$$
+		\item 对$X=a$或$X=a$, 得到$I_4$, $I_5$:
+		$$\begin{array}{ll}
+		I_4: & \left\{F\rightarrow a\blt \right.\\
+		\\
+		I_5: & \left\{ F\rightarrow b\blt \right.\\
+		\end{array}$$
+		\end{itemize}
+	\item 从$I_1, I_2, I_3$出发:
+		\begin{itemize}
+		\item 从$I_1$出发, 若$X=+$, 则能得到$I_6$
+			$$I_6\left\{\begin{array}{ll}
+			E\rightarrow E+\blt T & F\rightarrow\blt F* \\
+			T\rightarrow\blt TF & F\rightarrow\blt a \\
+			T\rightarrow\blt F & F\rightarrow\blt b \\
+			\end{array}\right.$$
+		\item 从$I_2$出发, 
+			\begin{itemize}
+			\item 若$X=F$, 得到$I_7$:
+				$$I_7\left\{\begin{array}{ll}
+				T\rightarrow TF\blt \\
+				F\rightarrow F\blt * \\
+				\end{array}\right.$$
+			\item 若$X=a$或$X=b$, 分别得到$I_6, I_7$
+			\end{itemize}
+		\item 从$I_3$出发, $X=*$时得到$I_8$:
+			$$I_8\left\{\begin{array}{ll}
+			F\rightarrow F *\blt \\
+			\end{array}\right.$$
+		\end{itemize}
+	\item 从$I_7, I_8$出发均已不能得到新的项目集, 从$I_6$出发, 若$X=T$, 得到$I_9$:
+		$$I_9\left\{\begin{array}{ll}
+		E\rightarrow E+T\blt & F\rightarrow\blt a \\
+		T\rightarrow T\blt F & F\rightarrow\blt b \\
+		& F\rightarrow\blt F* \\
+		\end{array}\right.$$
+	\end{itemize}
+
+\item 至此, 完成了该文法的LR(0)项目集规范族的构造, 下一步画出其对应的DFA转换图\\
+	\begin{tikzpicture}[shorten >=1pt,node distance=2cm,auto]
+	\tikzstyle{every state}=[fill={rgb:black,1;white,10}]
+	
+	% 从I0出发
+	\node[state](i0) at(0,0) {$I_0$};
+	\node[state](i1) at(2,4){$I_1$};
+	\node[state](i2) at(2,0){$I_2$};
+	\node[state](i3) at(4,-4){$I_3$};
+	\node[state](i4) at(4,0){$I_4$};
+	\node[state](i5) at(4,-2){$I_5$};
+	\node[state](i6) at(8,4) {$I_6$};
+	\node[state](i7) at(4,2){$I_7$};
+	\node[state](i8) at(6,-4){$I_8$};
+	\node[state](i9) at(10,4){$I_9$};
+	
+	\path[->] (i0) edge node{$E$} (i1);
+	\path[->] (i0) edge node{$T$} (i2);
+	\path[->] (i0) edge[bend right] node{$F$} (i3);
+	
+	\node(n4) at(-2,2){指向$I_4$};
+	\node(n5) at(-2,-2){指向$I_5$};
+	\path[->] (i0) edge node{$a$} (n4);
+	\path[->] (i0) edge node{$b$} (n5);
+	
+	% 从I1出发
+	\path[->] (i1) edge node{$+$} (i6);
+	
+	% 从I2出发
+	\path[->] (i2) edge node{$F$} (i7);
+	\path[->] (i2) edge node{$a$} (i4);
+	\path[->] (i2) edge node{$b$} (i5);
+	
+	% 从I3出发
+	\path[->] (i3) edge node{$*$} (i8);
+	
+	% 从I4出发
+	\path[->] (i6) edge node{$T$} (i9);
+	\path[->] (i6) edge[bend left] node{$F$} (i3);
+	\path[->] (i6) edge[bend left] node{$a$} (i4);
+	\path[->] (i6) edge[bend left] node{$b$} (i5);
+	
+	% 从I5出发
+	\node(n0) at(6,2){指向$I_8$};
+	\path[->] (i7) edge node{$*$} (n0);
+	
+	% 从I9出发
+	\node(n1) at(12,6){指向$I_7$};
+	\node(n2) at(12,4){指向$I_4$};
+	\node(n3) at(12,2){指向$I_5$};
+	\path[->] (i9) edge node{$F$} (n1);
+	\path[->] (i9) edge node{$a$} (n2);
+	\path[->] (i9) edge node{$b$} (n3);
+	\end{tikzpicture}
+\item 之后就可以直接构造表了:
+	\begin{enumerate}[(1) ]
+	\item 前面已经构造了项目集规范族
+	\item 构造action函数, 这里用表的形式写出. 此前, 先给出各个FOLLOW
+	$$\begin{array}{l}
+	FOLLOW(E)=\{+,\$\}\\
+	FOLLOW(T)=\{a,b,+,\$\}\\
+	FOLLOW(F)=\{a,b,*,+,\$\}\\
+	FOLLOW(TF)=FOLLOW(F)=\{a,b,*,+,\$\}\\
+	FOLLOW(F*)=FOLLOW(F)=\{a,b,*,+,\$\}\\
+	\end{array}$$
+	\begin{center}
+	\begin{tabular}{|c|c|c|c|c|c|}
+	\hline
+	 & a & b & + & * & \$\\
+ 	\hline
+ 	$I_0$ & s4 & s5 &  &  &  \\
+	\hline
+	$I_1$ &  &  & s6 &  & acc \\
+	\hline
+	$I_2$ & s4 & s5 & r2 &  & r2 \\
+	\hline
+	$I_3$ & r4 & r4 & r4 & s8  & r4 \\
+	\hline
+	$I_4$ & r6 & r6 & r6 & r6 & r6 \\
+	\hline
+	$I_5$ & r7 & r7 & r7 & r7 & r7 \\
+	\hline
+	$I_6$ & s4 & s5 &  &  &  \\
+	\hline
+	$I_7$ & r3 & r3 & r3 & s8 & r3 \\
+	\hline
+	$I_8$ & r5 & r5 & r5 & r5 & r5 \\
+	\hline
+	$I_9$ & s4 & s5 & r1 &  & r1 \\
+	\hline
+	\end{tabular}
+	\end{center}
+	\end{enumerate}
+\item 构造goto函数
+	\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+	\hline
+	 & E & T & F \\
+	\hline
+	$I_0$ & 1 & 2 & 3 \\
+	\hline
+	$I_1$ &  &  &  \\
+	\hline
+	$I_2$ &  &  & 7 \\
+	\hline
+	$I_3$ &  &  &  \\
+	\hline
+	$I_4$ &  &  &  \\
+	\hline
+	$I_5$ &  &  &  \\
+	\hline
+	$I_6$ &  & 9 & 3 \\
+	\hline
+	$I_7$ &  &  &  \\
+	\hline
+	$I_8$ &  &  &  \\
+	\hline
+	$I_9$ &  &  & 7 \\
+	\hline
+	\end{tabular}
+	\end{center}
+\item 至此, 该文法的SLR(1)分析表构造完毕
+\hfill$\square$
+\end{itemize}
+
+\subsection*{(b). 为此文法构造LALR分析表}
+\begin{itemize}
+\item 首先写出拓广的表达式文法
+$$\begin{array}{ll}
+ & E'\rightarrow E\\
+1 & E\rightarrow E+T\\
+2 & E\rightarrow T\\
+3 & T\rightarrow TF\\
+4 & T\rightarrow F\\
+5 & F\rightarrow F*\\
+6 & F\rightarrow a\\
+7 & F\rightarrow b
+\end{array}$$
+\item 然后构造LR(1)项目集规范族, 顺便求出action和goto函数
+	\begin{itemize}
+	\item 先写出$I_0$
+	$$I_0\left\{\begin{array}{ll}
+	E'\rightarrow \blt E & ,\$\\
+	E\rightarrow \blt E+T & ,+/\$\\
+	E\rightarrow\blt T & ,+/\$\\
+	T\rightarrow\blt TF & ,a/b/+/\$\\
+	T\rightarrow\blt F & , a/b/+/\$\\
+	F\rightarrow\blt F* & , a/b/+/*/\$\\
+	F\rightarrow\blt a & ,a/b/+/*/\$\\
+	F\rightarrow\blt b & ,a/b/+/*/\$\\
+	\end{array}\right.$$
+	\item 从$I_0$出发,
+		\begin{itemize}
+		\item 考虑$goto(I_0,E)$
+			$$I_1\left\{\begin{array}{ll}
+			E'\rightarrow E\blt & ,\$\\
+			E\rightarrow  E\blt+T & ,+/\$\\
+			\end{array}\right.$$
+		\item 考虑$goto(I_0,T)$
+			$$I_2\left\{\begin{array}{ll}
+			E\rightarrow T\blt & ,+/\$\\
+			T\rightarrow T\blt F & ,a/b/+/\$\\
+			F\rightarrow\blt F* & , a/b/+/*/\$\\
+			F\rightarrow\blt a & ,a/b/+/*/\$\\
+			F\rightarrow\blt b & ,a/b/+/*/\$\\
+			\end{array}\right.$$
+		\item 考虑$goto(I_0,F)$
+			$$I_3\left\{\begin{array}{ll}
+			T\rightarrow F\blt & , a/b/+/\$\\
+			F\rightarrow F\blt * & , a/b/+/*/\$\\
+			\end{array}\right.$$
+		\item 考虑$goto(I_0,a)$
+			$$I_4\left\{\begin{array}{ll}
+			F\rightarrow a\blt & ,a/b/+/*/\$\\
+			\end{array}\right.$$
+		\item 考虑$goto(I_0,a)$
+			$$I_5\left\{\begin{array}{ll}
+			F\rightarrow b\blt & ,a/b/+/*/\$\\
+			\end{array}\right.$$
+		\end{itemize}
+	\item 从$I_1$出发, 考虑$goto(I_1,+)$
+		$$I_6\left\{\begin{array}{ll}
+		E\rightarrow  E+\blt T & ,+/\$\\
+		T\rightarrow\blt TF & ,a/b/+/\$\\
+		T\rightarrow\blt F & , a/b/+/\$\\
+		F\rightarrow\blt F* & , a/b/+/*/\$\\
+		F\rightarrow\blt a & ,a/b/+/*/\$\\
+		F\rightarrow\blt b & ,a/b/+/*/\$\\
+		\end{array}\right.$$
+	\item 从$I_2$出发
+		\begin{itemize}
+		\item 考虑$goto(I_2,F)$
+			$$I_7\left\{\begin{array}{ll}
+			T\rightarrow TF\blt & ,a/b/+/\$\\
+			F\rightarrow F\blt * & , a/b/+/*/\$\\
+			\end{array}\right.$$
+		\item 考虑$goto(I_2,a)$, 得到$I_4$
+		\item 考虑$goto(I_2,b)$, 得到$I_5$
+		\end{itemize}
+	\item 从$I_3$出发, 考虑$goto(I_3,*)$, 得到
+		$$I_8\left\{\begin{array}{ll}
+		F\rightarrow F*\blt & , a/b/+/*/\$\\
+		\end{array}\right.$$
+	\item 从$I_4, I_5$无法继续了
+	\item 从$I_6$出发
+		\begin{itemize}
+		\item 考虑$goto(I_6,T)$, 得到
+			$$I_9\left\{\begin{array}{ll}
+			E\rightarrow  E+T\blt & ,+/\$\\
+			T\rightarrow T\blt F & ,a/b/+/\$\\
+			F\rightarrow\blt F* & , a/b/+/*/\$\\
+			F\rightarrow\blt a & ,a/b/+/*/\$\\
+			F\rightarrow\blt b & ,a/b/+/*/\$\\
+			\end{array}\right.$$
+		\item 考虑$goto(I_6,F)$, 得到$I_3$
+		\item 考虑$goto(I_6,a)$和$goto(I_6,b)$, 分别得到$I_4, I_5$
+		\end{itemize}
+	\item 从$I_7$出发, 考虑$goto(I_7,*)$, 得到$I_8$
+	\item 从$I_8$莫得出发
+	\item 从$I_9$
+		\begin{itemize}
+		\item 考虑$goto(I_9,F)$, 得到$I_7$
+		\item 考虑$goto(I_9,a), goto(I_9,b)$分别得到$I_4,I_5$
+		\end{itemize}
+	\end{itemize}
+\item 至此, 已经列出所有结果.
+\end{itemize}
+
+
+\newpage
+\section*{3.20}
+\noindent 证明下面的文法
+$$\begin{array}{l}
+S\rightarrow SA|A\\
+A\rightarrow a
+\end{array}$$
+是SLR(1)文法, 但不是LL(1)文法.\\
+\subsection*{1. 证明是SLR(1)文法}
+按照前面的方法尝试构造分析表.
+\begin{itemize}
+\item 项目集规范族:
+	$$\begin{array}{ll}
+	I_0:
+		\left\{\begin{array}{l}
+		S'\rightarrow \blt S\\
+		S\rightarrow \blt SA\\
+		S\rightarrow\blt A\\
+		A\rightarrow \blt a
+		\end{array}\right.
+	&
+	I_1:
+		\left\{\begin{array}{l}
+		S'\rightarrow S\blt\\
+		S\rightarrow S\blt A
+		\end{array}\right.
+	\\\\
+	I_2:
+		\left\{\begin{array}{l}
+		S\rightarrow A\blt
+		\end{array}\right.
+	&
+	I_3:
+		\left\{\begin{array}{l}
+		A\rightarrow a\blt
+		\end{array}\right.
+	\\\\
+	I_4:
+		\left\{\begin{array}{l}
+		S\rightarrow SA\blt
+		\end{array}\right.
+	\\
+	\end{array}$$
+\item 构造分析表
+	\begin{enumerate}[(1) ]
+	\item 构造action函数
+		$$\begin{array}{l}
+		FOLLOW(S)=\{\$,a\}
+		\end{array}$$
+		\begin{center}
+		\begin{tabular}{|c|c|c|}
+		\hline
+		 & a & \$ \\
+		\hline
+		$I_0$ & s3 &  \\
+		\hline
+		$I_1$ &  & acc \\
+		\hline
+		$I_2$ & r2 & r2 \\
+		\hline
+		$I_3$ &  &  \\
+		\hline
+		$I_4$ & r2 & r2 \\
+		\hline
+		\end{tabular}\\
+		\end{center}
+		显然, 我们可以构造出无冲突的动作. 至此就已经可以认为, 该文法是SLR(1)的了. 为了练手, 再求以下goto函数
+		\item 构造goto函数如右
+		\begin{tabular}{|c|c|c|}
+		\hline
+		 & S & A \\
+		\hline
+		$I_0$ & 1 & 2 \\
+		\hline
+		$I_1$ &  & 4 \\
+		\hline
+		$I_2$ &  &  \\
+		\hline
+		$I_3$ &  &  \\
+		\hline
+		$I_4$ &  &  \\
+		\hline
+		\end{tabular}
+		\item 至此完整构造出了分析表
+	\end{enumerate}
+\end{itemize}
+\textbf{综上所述, 该文法是SLR(1)的}.
+
+\subsection*{2. 证明不是LL(1)文法}
+它显然不是LL(1)文法, 因为LL(1)文法必然不含有左递归, 而$S\rightarrow SA$是左递归的.
+
+
+\end{document}
+
+
+
+
+
