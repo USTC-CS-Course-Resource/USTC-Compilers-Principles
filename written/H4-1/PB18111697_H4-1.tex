@@ -29,7 +29,6 @@
 \usepackage[noend]{algpseudocode}
 %%%%%%%%%%%%%%%画图包%%%%%%%%%%%%%%%
 \usepackage{tikz}
-\usepackage{tikZ-timing} % 时序图支持
 \usepackage{pgfplots} % http://pgfplots.sourceforge.net/gallery.html
 \usetikzlibrary{pgfplots.patchplots} % 拟合支持
 \usetikzlibrary{arrows,shapes,automata,petri,positioning,calc} % 状态图支持
@@ -318,8 +317,6 @@ T\rightarrow \blt TF & F\rightarrow\blt b \\
 	FOLLOW(E)=\{+,\$\}\\
 	FOLLOW(T)=\{a,b,+,\$\}\\
 	FOLLOW(F)=\{a,b,*,+,\$\}\\
-	FOLLOW(TF)=FOLLOW(F)=\{a,b,*,+,\$\}\\
-	FOLLOW(F*)=FOLLOW(F)=\{a,b,*,+,\$\}\\
 	\end{array}$$
 	\begin{center}
 	\begin{tabular}{|c|c|c|c|c|c|}
@@ -481,7 +478,64 @@ $$\begin{array}{ll}
 		\item 考虑$goto(I_9,a), goto(I_9,b)$分别得到$I_4,I_5$
 		\end{itemize}
 	\end{itemize}
-\item 至此, 已经列出所有结果.
+\item 至此, 已经列出所有结果, 尝试寻找同心的LR(1)项目集, 但没有.
+\item 开始构造action函数. 如下:
+	\begin{center}
+	\begin{tabular}{|c|c|c|c|c|c|}
+	\hline
+	 & a & b & + & * & \$\\
+ 	\hline
+ 	$I_0$ & s4 & s5 &  &  &  \\
+	\hline
+	$I_1$ &  &  & s6 &  & acc \\
+	\hline
+	$I_2$ & s4 & s5 & r2 &  & r2 \\
+	\hline
+	$I_3$ & r4 & r4 & r4 & s8  & r4 \\
+	\hline
+	$I_4$ & r6 & r6 & r6 & r6 & r6 \\
+	\hline
+	$I_5$ & r7 & r7 & r7 & r7 & r7 \\
+	\hline
+	$I_6$ & s4 & s5 &  &  &  \\
+	\hline
+	$I_7$ & r3 & r3 & r3 & s8 & r3 \\
+	\hline
+	$I_8$ & r5 & r5 & r5 & r5 & r5 \\
+	\hline
+	$I_9$ & s4 & s5 & r1 &  & r1 \\
+	\hline
+	\end{tabular}
+	\end{center}
+\item 构造goto函数
+	\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+	\hline
+ & E & T & F \\
+	\hline
+	$I_0$ & 1 & 2 & 3 \\
+	\hline
+	$I_1$ &  &  &  \\
+	\hline
+	$I_2$ &  &  & 7 \\
+	\hline
+	$I_3$ &  &  &  \\
+	\hline
+	$I_4$ &  &  &  \\
+	\hline
+	$I_5$ &  &  &  \\
+	\hline
+	$I_6$ &  & 9 & 3 \\
+	\hline
+	$I_7$ &  &  &  \\
+	\hline
+	$I_8$ &  &  &  \\
+	\hline
+	$I_9$ &  &  & 7 \\
+	\hline
+	\end{tabular}
+	\end{center}
+\item 至此, 该文法的LALR分析表构造完毕.
 \end{itemize}
 
 
@@ -496,6 +550,13 @@ A\rightarrow a
 \subsection*{1. 证明是SLR(1)文法}
 按照前面的方法尝试构造分析表.
 \begin{itemize}
+\item 拓广文法
+	$$\begin{array}{ll}
+	  & S'\rightarrow S\\
+	1 & S\rightarrow SA\\
+	2 & S\rightarrow A\\
+	3 & A\rightarrow a
+	\end{array}$$
 \item 项目集规范族:
 	$$\begin{array}{ll}
 	I_0:
@@ -509,7 +570,8 @@ A\rightarrow a
 	I_1:
 		\left\{\begin{array}{l}
 		S'\rightarrow S\blt\\
-		S\rightarrow S\blt A
+		S\rightarrow S\blt A\\
+		A\rightarrow \blt a
 		\end{array}\right.
 	\\\\
 	I_2:
@@ -532,7 +594,8 @@ A\rightarrow a
 	\begin{enumerate}[(1) ]
 	\item 构造action函数
 		$$\begin{array}{l}
-		FOLLOW(S)=\{\$,a\}
+		FOLLOW(S)=\{\$,a\}\\
+		FOLLOW(A)=\{\$,a\}
 		\end{array}$$
 		\begin{center}
 		\begin{tabular}{|c|c|c|}
@@ -541,13 +604,13 @@ A\rightarrow a
 		\hline
 		$I_0$ & s3 &  \\
 		\hline
-		$I_1$ &  & acc \\
+		$I_1$ & s3 & acc \\
 		\hline
 		$I_2$ & r2 & r2 \\
 		\hline
-		$I_3$ &  &  \\
+		$I_3$ & r3 & r3 \\
 		\hline
-		$I_4$ & r2 & r2 \\
+		$I_4$ & r1 & r1 \\
 		\hline
 		\end{tabular}\\
 		\end{center}
