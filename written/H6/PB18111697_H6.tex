@@ -1,0 +1,293 @@
+\documentclass[UTF8]{article}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{makecell}
+\usepackage[utf8]{inputenc}
+\usepackage[space]{ctex} %中文包
+\usepackage{listings} %放代码
+\usepackage{xcolor} %代码着色宏包
+\usepackage{CJK} %显示中文宏包
+\usepackage{float}
+\usepackage{diagbox}
+\usepackage{bm}
+\usepackage{ulem} 
+\usepackage{amssymb}
+\usepackage{soul}
+\usepackage{color}
+\usepackage{geometry}
+\usepackage{fancybox} %花里胡哨的盒子
+\usepackage{xhfill} %填充包, 可画分割线 https://www.latexstudio.net/archives/8245
+\usepackage{multicol} %多栏包
+\usepackage{enumerate} %可以方便地自定义枚举标题
+\usepackage{multirow} %表格中多行单元格合并
+\usepackage{wasysym} %可以使用wasysym里的一堆奇奇怪怪的符号
+\usepackage{hyperref} % url
+%%%%%%%%%%%%%%%伪代码%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+%%%%%%%%%%%%%%%画图包%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usepackage{pgfplots} % http://pgfplots.sourceforge.net/gallery.html
+\usetikzlibrary{pgfplots.patchplots} % 拟合支持
+\usetikzlibrary{arrows,shapes,automata,petri,positioning,calc} % 状态图支持
+\usetikzlibrary{arrows.meta} % 箭头
+\usetikzlibrary{shadows} % 阴影支持
+\usepackage{forest} % 画树
+
+\geometry{left = 1.5cm, right = 1.5cm, top=1.5cm, bottom=2cm}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstset{
+	backgroundcolor=\color{white}, 
+	%\tiny < \scriptsize < \footnotesize < \small < \normalsize < \large < \Large < \LARGE < \huge < \Huge
+	basicstyle = \footnotesize,       
+	breakatwhitespace = false,        
+	breaklines = true,                 
+	captionpos = b,                    
+	commentstyle = \color{mygreen}\bfseries,
+	extendedchars = false,
+	frame = shadowbox, 
+	framerule=0.5pt,
+	keepspaces=true,
+	keywordstyle=\color{blue}\bfseries, % keyword style
+	language = C++,                     % the language of code
+	otherkeywords={string}, 
+	numbers=left, 
+	numbersep=5pt,
+	numberstyle=\tiny\color{mygray},
+	rulecolor=\color{black},         
+	showspaces=false,  
+	showstringspaces=false, 
+	showtabs=false,    
+	stepnumber=1,         
+	stringstyle=\color{mymauve},        % string literal style
+	tabsize=4,          
+	title=\lstname           
+}
+
+%\sum\nolimits_{j=1}^{M}   上下标位于求和符号的水平右端，
+%\sum\limits_{j=1}^{M}   上下标位于求和符号的上下处，
+%\sum_{j=1}^{M}  对上下标位置没有设定，会随公式所处环境自动调整。
+
+%%%%%%%%%%%%%画图包%%%%%%%%%%%%%
+\usepackage{tikz}
+%%%%%%%%%%%%%好看的矩形%%%%%%%%%%%%%
+\tikzset{
+  rect1/.style = {
+    shape = rectangle,% 指定样式
+    minimum height=2cm,% 最小高度
+    minimum width=4cm,% 最小宽度
+    align = center,% 文字居中
+    drop shadow,% 阴影
+  }
+}
+%%%%%%%%%%%%%画图背景包%%%%%%%%%%%%%
+\usetikzlibrary{backgrounds}
+
+%%%%%%%%%%%%%在tikz中画一个顶点%%%%%%%%%%%%%
+%%%%%%%%%%%%%#1:node名称%%%%%%%%%%%%%
+%%%%%%%%%%%%%#2:位置%%%%%%%%%%%%%
+%%%%%%%%%%%%%#3:标签%%%%%%%%%%%%%
+\newcommand{\newVertex}[3]{\node[circle, draw=black, line width=1pt, scale=0.8] (#1) at #2{#3}}
+%%%%%%%%%%%%%在tikz中画一条边%%%%%%%%%%%%%
+\newcommand{\newEdge}[2]{\draw [black,very thick](#1)--(#2)}
+%%%%%%%%%%%%%在tikz中放一个标签%%%%%%%%%%%%%
+%%%%%%%%%%%%%#1:名称%%%%%%%%%%%%%
+%%%%%%%%%%%%%#2:位置%%%%%%%%%%%%%
+%%%%%%%%%%%%%#3:标签内容%%%%%%%%%%%%%
+\newcommand{\newLabel}[3]{\node[line width=1pt] (#1) at #2{#3}}
+
+%%%%%%%%%%%%%强制跳过一行%%%%%%%%%%%%%
+\newcommand{\jumpLine} {\hspace*{\fill} \par}
+%%%%%%%%%%%%%关键点指令,可用itemise替代%%%%%%%%%%%%%
+\newcommand{\average}[1]{\left\langle #1\right\rangle }
+%%%%%%%%%%%%%表格内嵌套表格%%%%%%%%%%%%%
+\newcommand{\keypoint}[2]{$\bullet$\textbf{#1}\quad#2\par}
+%%%%%%%%%%%%%<T>平均值表示%%%%%%%%%%%%%
+\newcommand{\tabincell}[2]{\begin{tabular}{#1}#2\end{tabular}}%放在导言区
+%%%%%%%%%%%%%大黑点item头%%%%%%%%%%%%%
+\newcommand{\itemblt}{\item[$\bullet$]}
+%%%%%%%%%%%%%大圈item头%%%%%%%%%%%%%
+\newcommand{\itemc}{\item[$\circ$]}
+%%%%%%%%%%%%%大星星item头%%%%%%%%%%%%%
+\newcommand{\itembs}{\item[$\bigstar$]}
+%%%%%%%%%%%%%右▷item头%%%%%%%%%%%%%
+\newcommand{\itemrhd}{\item[$\rhd$]}
+%%%%%%%%%%%%%定义为%%%%%%%%%%%%%
+\newcommand{\defas}{=_{df}}
+%%%%%%%%%%%%%偏导%%%%%%%%%%%%%
+\newcommand{\partialx}[2]{\frac{\partial #1}{\partial #2}}
+%%%%%%%%%%%%%蕴含%%%%%%%%%%%%%
+\newcommand{\imp}{\rightarrow}
+%%%%%%%%%%%%%上取整%%%%%%%%%%%%%
+\newcommand{\ceil}[1]{\lceil#1\rceil}
+%%%%%%%%%%%%%下取整%%%%%%%%%%%%%
+\newcommand{\floor}[1]{\lfloor#1\rfloor}
+%%%%%%%%%%%%%textbullet%%%%%%%%%%%%%
+\newcommand{\blt}{\bullet}
+%%%%%%%%%%%%%右箭头上加字%%%%%%%%%%%%%
+\newcommand{\righttextarrow}[1]{\stackrel{#1}{\longrightarrow}}
+%%%%%%%%%%%%%左箭头上加字%%%%%%%%%%%%%
+\newcommand{\lefttextarrow}[1]{\stackrel{#1}{\longleftarrow}}
+
+%%%%%%%%%%%%%双线分割线%%%%%%%%%%%%%
+\newcommand*{\doublerule}{\hrule width \hsize height 1pt \kern 0.5mm \hrule width \hsize height 2pt}
+%%%%%%%%%%%%%双线中间可加东西的分割线%%%%%%%%%%%%%
+\newcommand\doublerulefill{\leavevmode\leaders\vbox{\hrule width .1pt\kern1pt\hrule}\hfill\kern0pt }
+%%%%%%%%%%%%%左大括号%%%%%%%%%%%%%
+\newcommand{\leftbig}[1]{\left\{\begin{array}{l}#1\end{array}\right.}
+%%%%%%%%%%%%%矩阵%%%%%%%%%%%%%
+\newcommand{\mat}[2]{\left[\begin{array}{#1}#2\end{array}\right]}
+%%%%%%%%%%%%%可换行圆角文本框%%%%%%%%%%%%%
+\newcommand{\ovalboxn}[1]{\ovalbox{\tabincell{l}{#1}}}
+%%%%%%%%%%%%%设置section的counter, 使从1开始%%%%%%%%%%%%%
+\setcounter{section}{0}
+
+%%%%%%%%%%%%%Colors%%%%%%%%%%%%%
+\newcommand{\lightercolor}[3]{% Reference Color, Percentage, New Color Name
+    \colorlet{#3}{#1!#2!white}
+}
+\newcommand{\darkercolor}[3]{% Reference Color, Percentage, New Color Name
+    \colorlet{#3}{#1!#2!black}
+}
+\definecolor{aquamarine}{rgb}{0.5, 1.0, 0.83}
+\definecolor{Seashell}{RGB}{255, 245, 238} %背景色浅一点的
+\definecolor{Firebrick4}{RGB}{255, 0, 0}%文字颜色红一点的
+\lightercolor{gray}{15}{lgray}
+\newcommand{\hlg}[1]{
+	\begingroup
+		\sethlcolor{lgray}%背景色
+		\textcolor{black}{\hl{\mbox{#1}}}%textcolor里面对应文字颜色
+	\endgroup
+}
+
+
+
+\title{编译原理与技术 H6}
+\date{}
+\author{PB18111697 王章瀚}
+
+\begin{document}
+\maketitle
+\section*{4.12}
+\noindent 为文法
+$$\begin{array}{l}
+S\rightarrow(L)|a\\
+L\rightarrow L,S|S
+\end{array}$$
+(b) 写出自上而下分析的栈操作代码, 它打印每个\hlg{$a$}在句子中是第几个字符, 例如, 当句子是\hlg{$(a,(a,(a,a),(a)))$}时, 打印的结果是\hlg{$2\quad5\quad8\quad10\quad14$}\\
+
+上一次作业中已经写出了消除了左递归的文法和翻译方案如下:\\
+\begin{minipage}{\linewidth/3}
+$$\begin{array}{l}
+	Q\rightarrow S\\
+	S\rightarrow (L)\\
+	S\rightarrow a\\
+	L\rightarrow SR\\
+	R\rightarrow ,SR_1\\
+	R\rightarrow \epsilon\\
+\end{array}$$
+\end{minipage}
+\begin{minipage}{\linewidth*2/3}
+$$\begin{array}{l}
+	Q\rightarrow \{S.first=1;\}S\\
+	S\rightarrow \{L.first=S.first;\} (L) \{S.last=L.last+1;\}\\
+	S\rightarrow a\{S.last=S.first;\ print(S.first);\}\\
+	L\rightarrow \{S.first=L.first\}S\{R.first=S.last+1\}R\{L.last=R.last\}\\
+	R\rightarrow ,\{S.first=R.first+1;\}S\{R_1.first=S.last+1;\}R_1\{R.last=R_1.last\}\\
+	R\rightarrow \{R.last=R.fisrt\}\\
+\end{array}$$
+\end{minipage}
+
+这样, 对于一个LL(1)文法来说, 只需要系统地引入非终结符即可在LR分析期间完成属性计算. 引入的符号及引入后对栈操作代码如下:\\
+\begin{center}
+\begin{tabular}{|l|l|l|}
+	\hline
+	翻译方案 & 语义规则 & 操作代码 \\
+	\hline
+	$Q\rightarrow AS$ & $S.first=A.last$ & $val[top-1]=val[top]$\\
+	\hline
+	$A\rightarrow \epsilon$ & $A.last=1$ & $val[top]=1$\\
+	\hline
+	$S\rightarrow (BL)$ & $B.first=S.first+1$ & $val[top-3]=val[top-1]+1$\\
+	& $L.first=B.last+1$ & \\
+	& $S.last=L.last+1$ & \\
+	\hline
+	$B\rightarrow\epsilon$ & $B.last=B.first$ & $val[top+1]=val[top-1]+2$ \\
+	\hline
+	$S\rightarrow a$ & $S.last=S.first; print(S.first)$ & $val[top]=val[top-1]+1$\\
+	\hline
+	$L\rightarrow SR$ & $S.first=L.first+1$ & $val[top-1]=val[top]$ \\
+	& $R.first=S.last+1$ & \\
+	& $L.last=R.last$ & \\
+	\hline
+	$R\rightarrow ,DSR_1$ & $D.first=R.first+1$ & $val[top-3]=val[top]$ \\
+	& $S.first=D.last+1$ & \\
+	& $R_1.first=S.last+1$ & \\
+	& $L.last=R_1.last$ & \\
+	\hline
+	$D\rightarrow \epsilon$ & $D.last=L.first$ & $val[top+1]=val[top-1]+1$ \\
+	\hline
+	$R\rightarrow \epsilon$ & $R.last=R.first$ & $val[top+1]=val[top]$ \\
+	\hline
+\end{tabular}
+\end{center}
+
+
+
+\newpage
+\section*{4.14}
+\noindent 程序的文法如下:
+$$\begin{array}{l}
+	P\rightarrow D\\
+	D\rightarrow D;D | id:T | proc\ id; D;S
+\end{array}$$
+\begin{enumerate}[(a). ]
+\item 写一个语法制导定义, 打印该程序一共声明了多少个id.\\
+即考虑文法(这里的 \hlg{$T$} 和 \hlg{$S$} 就当成终结符了)
+$$\begin{array}{l}
+P\rightarrow D \\
+D\rightarrow D;D \\
+D\rightarrow id:T \\
+D\rightarrow proc\ id; D;S
+\end{array}$$
+用 \hlg{$count$} 表示直到当前符号包含的 \hlg{$id$} 个数. 则其语法制导定义如下:\\
+\begin{center}
+\begin{tabular}{l|l}
+	\hline
+	产生式 & 语义规则 \\
+	\hline
+	$P\rightarrow D$ & $print(D.count)$ \\
+	\hline
+	$D\rightarrow D_1;D_2$ & $D.count=D_1.count+D_2.count$ \\
+	\hline
+	$D\rightarrow id:T$ & $D.count=1$ \\
+	\hline
+	$D\rightarrow proc\ id; D_1;S$ & $D.count=1+D_1.count$ \\
+	\hline
+\end{tabular}
+\end{center}
+\item 写一个翻译方案, 打印该程序每个变量id的嵌套深度. 例如, 当句型是 \hlg{$a:T;proc\ b;ba:T;S$}时, \hlg{$a$}和\hlg{$b$}的嵌套深度是1, \hlg{$ba$}的嵌套深度是2.\\
+为了表示嵌套深度显然需要引入继承属性. 这里用 \hlg{$depth$}表示嵌套深度. 于是可以写出翻译方案如下:
+$$\begin{array}{l}
+P\rightarrow \{D.depth=0;\}D \\
+D\rightarrow \{D_1.depth=D.depth+1;\}D_1;\{D_2.depth=D.depth+1;\}D_2 \\
+D\rightarrow id:T \{print(D.depth);\}\\
+D\rightarrow proc\ id\{print(D.depth);\}; \{D_1.depth=D.depth+1;\}D_1;S
+\end{array}$$
+
+\end{enumerate}
+
+
+
+
+\end{document}
+
+
+
+
+
