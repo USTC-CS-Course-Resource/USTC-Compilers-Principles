@@ -1,0 +1,29 @@
+#include <iostream>
+#include <memory>
+#include <cassert>
+#include <sstream>
+#include <sys/mman.h>
+#include <mcheck.h>
+
+using namespace std;
+
+int main() {
+    const int N = 1 << 8;
+    int* start = new int[N];
+    auto_ptr<int> ptest(start); // 分配一个数组
+    for (int i = 0; i < N; i++) {
+        ptest.get()[i] = i;
+    }
+    cout << "from " << ptest.get() << " to " << ptest.get() + N-1 << endl;
+    int *p_to_be_leak = (int*)((((uint64_t)start >> 8) + 1) << 8);
+    cout << *p_to_be_leak << endl;  // 输出这个元素(应为2)
+    ptest.reset();  // 释放
+    cout << "tried at: " << p_to_be_leak << endl;
+    void* p = mmap((void*)(start + N),
+        sizeof(int),
+        PROT_READ|PROT_WRITE|PROT_EXEC,
+        MAP_PRIVATE | MAP_ANONYMOUS | MAP_FIXED_NOREPLACE, -1, 0);
+    cout << "p: " << p << endl;
+    cout << "errno: " << errno << endl;
+    cout << *p_to_be_leak << endl;  // 这块内存将不会被释放(其结果没有改变)
+}

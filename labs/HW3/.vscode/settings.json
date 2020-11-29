@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "new": "cpp",
+        "memory": "cpp",
+        "random": "cpp",
+        "optional": "cpp",
+        "iostream": "cpp",
+        "ostream": "cpp",
+        "thread": "cpp",
+        "typeinfo": "cpp"
+    }
+}

@@ -1,0 +1,348 @@
+语法
+
+    0 $accept: input $end
+
+    1 input: %empty
+    2      | input line
+
+    3 line: EOL
+    4     | exp EOL
+
+    5 exp: NUMBER
+    6    | exp PLUS exp
+    7    | exp MINUS exp
+    8    | exp MULT exp
+    9    | exp DIV exp
+   10    | MINUS exp
+   11    | exp EXPON exp
+   12    | LB exp RB
+
+
+终结语词，附有它们出现处的规则
+
+    $end (0) 0
+    error (256)
+    NUMBER <val> (258) 5
+    PLUS <op> (259) 6
+    MINUS <op> (260) 7 10
+    MULT <op> (261) 8
+    DIV <op> (262) 9
+    EXPON <op> (263) 11
+    EOL (264) 3 4
+    LB (265) 12
+    RB (266) 12
+    UMINUS (267)
+
+
+非终结语词，附有它们出现处的规则
+
+    $accept (13)
+        on left: 0
+    input (14)
+        on left: 1 2
+        on right: 0 2
+    line (15)
+        on left: 3 4
+        on right: 2
+    exp <val> (16)
+        on left: 5 6 7 8 9 10 11 12
+        on right: 4 6 7 8 9 10 11 12
+
+
+状态 0
+
+    0 $accept: . input $end
+
+    $default  使用规则 1 以归约 (input)
+
+    input  转到状态 1
+
+
+状态 1
+
+    0 $accept: input . $end
+    2 input: input . line
+
+    $end    偏移，并进入状态 2
+    NUMBER  偏移，并进入状态 3
+    MINUS   偏移，并进入状态 4
+    EOL     偏移，并进入状态 5
+    LB      偏移，并进入状态 6
+
+    line  转到状态 7
+    exp   转到状态 8
+
+
+状态 2
+
+    0 $accept: input $end .
+
+    $default  接受
+
+
+状态 3
+
+    5 exp: NUMBER .
+
+    $default  使用规则 5 以归约 (exp)
+
+
+状态 4
+
+   10 exp: MINUS . exp
+
+    NUMBER  偏移，并进入状态 3
+    MINUS   偏移，并进入状态 4
+    LB      偏移，并进入状态 6
+
+    exp  转到状态 9
+
+
+状态 5
+
+    3 line: EOL .
+
+    $default  使用规则 3 以归约 (line)
+
+
+状态 6
+
+   12 exp: LB . exp RB
+
+    NUMBER  偏移，并进入状态 3
+    MINUS   偏移，并进入状态 4
+    LB      偏移，并进入状态 6
+
+    exp  转到状态 10
+
+
+状态 7
+
+    2 input: input line .
+
+    $default  使用规则 2 以归约 (input)
+
+
+状态 8
+
+    4 line: exp . EOL
+    6 exp: exp . PLUS exp
+    7    | exp . MINUS exp
+    8    | exp . MULT exp
+    9    | exp . DIV exp
+   11    | exp . EXPON exp
+
+    PLUS   偏移，并进入状态 11
+    MINUS  偏移，并进入状态 12
+    MULT   偏移，并进入状态 13
+    DIV    偏移，并进入状态 14
+    EXPON  偏移，并进入状态 15
+    EOL    偏移，并进入状态 16
+
+
+状态 9
+
+    6 exp: exp . PLUS exp
+    7    | exp . MINUS exp
+    8    | exp . MULT exp
+    9    | exp . DIV exp
+   10    | MINUS exp .
+   11    | exp . EXPON exp
+
+    $default  使用规则 10 以归约 (exp)
+
+    Conflict between rule 10 and token PLUS resolved as reduce (PLUS < UMINUS).
+    Conflict between rule 10 and token MINUS resolved as reduce (MINUS < UMINUS).
+    Conflict between rule 10 and token MULT resolved as reduce (MULT < UMINUS).
+    Conflict between rule 10 and token DIV resolved as reduce (DIV < UMINUS).
+    Conflict between rule 10 and token EXPON resolved as reduce (EXPON < UMINUS).
+
+
+状态 10
+
+    6 exp: exp . PLUS exp
+    7    | exp . MINUS exp
+    8    | exp . MULT exp
+    9    | exp . DIV exp
+   11    | exp . EXPON exp
+   12    | LB exp . RB
+
+    PLUS   偏移，并进入状态 11
+    MINUS  偏移，并进入状态 12
+    MULT   偏移，并进入状态 13
+    DIV    偏移，并进入状态 14
+    EXPON  偏移，并进入状态 15
+    RB     偏移，并进入状态 17
+
+
+状态 11
+
+    6 exp: exp PLUS . exp
+
+    NUMBER  偏移，并进入状态 3
+    MINUS   偏移，并进入状态 4
+    LB      偏移，并进入状态 6
+
+    exp  转到状态 18
+
+
+状态 12
+
+    7 exp: exp MINUS . exp
+
+    NUMBER  偏移，并进入状态 3
+    MINUS   偏移，并进入状态 4
+    LB      偏移，并进入状态 6
+
+    exp  转到状态 19
+
+
+状态 13
+
+    8 exp: exp MULT . exp
+
+    NUMBER  偏移，并进入状态 3
+    MINUS   偏移，并进入状态 4
+    LB      偏移，并进入状态 6
+
+    exp  转到状态 20
+
+
+状态 14
+
+    9 exp: exp DIV . exp
+
+    NUMBER  偏移，并进入状态 3
+    MINUS   偏移，并进入状态 4
+    LB      偏移，并进入状态 6
+
+    exp  转到状态 21
+
+
+状态 15
+
+   11 exp: exp EXPON . exp
+
+    NUMBER  偏移，并进入状态 3
+    MINUS   偏移，并进入状态 4
+    LB      偏移，并进入状态 6
+
+    exp  转到状态 22
+
+
+状态 16
+
+    4 line: exp EOL .
+
+    $default  使用规则 4 以归约 (line)
+
+
+状态 17
+
+   12 exp: LB exp RB .
+
+    $default  使用规则 12 以归约 (exp)
+
+
+状态 18
+
+    6 exp: exp . PLUS exp
+    6    | exp PLUS exp .
+    7    | exp . MINUS exp
+    8    | exp . MULT exp
+    9    | exp . DIV exp
+   11    | exp . EXPON exp
+
+    MULT   偏移，并进入状态 13
+    DIV    偏移，并进入状态 14
+    EXPON  偏移，并进入状态 15
+
+    $default  使用规则 6 以归约 (exp)
+
+    Conflict between rule 6 and token PLUS resolved as reduce (%left PLUS).
+    Conflict between rule 6 and token MINUS resolved as reduce (%left MINUS).
+    Conflict between rule 6 and token MULT resolved as shift (PLUS < MULT).
+    Conflict between rule 6 and token DIV resolved as shift (PLUS < DIV).
+    Conflict between rule 6 and token EXPON resolved as shift (PLUS < EXPON).
+
+
+状态 19
+
+    6 exp: exp . PLUS exp
+    7    | exp . MINUS exp
+    7    | exp MINUS exp .
+    8    | exp . MULT exp
+    9    | exp . DIV exp
+   11    | exp . EXPON exp
+
+    MULT   偏移，并进入状态 13
+    DIV    偏移，并进入状态 14
+    EXPON  偏移，并进入状态 15
+
+    $default  使用规则 7 以归约 (exp)
+
+    Conflict between rule 7 and token PLUS resolved as reduce (%left PLUS).
+    Conflict between rule 7 and token MINUS resolved as reduce (%left MINUS).
+    Conflict between rule 7 and token MULT resolved as shift (MINUS < MULT).
+    Conflict between rule 7 and token DIV resolved as shift (MINUS < DIV).
+    Conflict between rule 7 and token EXPON resolved as shift (MINUS < EXPON).
+
+
+状态 20
+
+    6 exp: exp . PLUS exp
+    7    | exp . MINUS exp
+    8    | exp . MULT exp
+    8    | exp MULT exp .
+    9    | exp . DIV exp
+   11    | exp . EXPON exp
+
+    EXPON  偏移，并进入状态 15
+
+    $default  使用规则 8 以归约 (exp)
+
+    Conflict between rule 8 and token PLUS resolved as reduce (PLUS < MULT).
+    Conflict between rule 8 and token MINUS resolved as reduce (MINUS < MULT).
+    Conflict between rule 8 and token MULT resolved as reduce (%left MULT).
+    Conflict between rule 8 and token DIV resolved as reduce (%left DIV).
+    Conflict between rule 8 and token EXPON resolved as shift (MULT < EXPON).
+
+
+状态 21
+
+    6 exp: exp . PLUS exp
+    7    | exp . MINUS exp
+    8    | exp . MULT exp
+    9    | exp . DIV exp
+    9    | exp DIV exp .
+   11    | exp . EXPON exp
+
+    EXPON  偏移，并进入状态 15
+
+    $default  使用规则 9 以归约 (exp)
+
+    Conflict between rule 9 and token PLUS resolved as reduce (PLUS < DIV).
+    Conflict between rule 9 and token MINUS resolved as reduce (MINUS < DIV).
+    Conflict between rule 9 and token MULT resolved as reduce (%left MULT).
+    Conflict between rule 9 and token DIV resolved as reduce (%left DIV).
+    Conflict between rule 9 and token EXPON resolved as shift (DIV < EXPON).
+
+
+状态 22
+
+    6 exp: exp . PLUS exp
+    7    | exp . MINUS exp
+    8    | exp . MULT exp
+    9    | exp . DIV exp
+   11    | exp . EXPON exp
+   11    | exp EXPON exp .
+
+    EXPON  偏移，并进入状态 15
+
+    $default  使用规则 11 以归约 (exp)
+
+    Conflict between rule 11 and token PLUS resolved as reduce (PLUS < EXPON).
+    Conflict between rule 11 and token MINUS resolved as reduce (MINUS < EXPON).
+    Conflict between rule 11 and token MULT resolved as reduce (MULT < EXPON).
+    Conflict between rule 11 and token DIV resolved as reduce (DIV < EXPON).
+    Conflict between rule 11 and token EXPON resolved as shift (%right EXPON).

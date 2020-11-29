@@ -1,0 +1,323 @@
+\documentclass[UTF8]{article}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{makecell}
+\usepackage[utf8]{inputenc}
+\usepackage[space]{ctex} %中文包
+\usepackage{listings} %放代码
+\usepackage{xcolor} %代码着色宏包
+\usepackage{CJK} %显示中文宏包
+\usepackage{float}
+\usepackage{diagbox}
+\usepackage{bm}
+\usepackage{ulem} 
+\usepackage{amssymb}
+\usepackage{soul}
+\usepackage{color}
+\usepackage{geometry}
+\usepackage{fancybox} %花里胡哨的盒子
+\usepackage{xhfill} %填充包, 可画分割线 https://www.latexstudio.net/archives/8245
+\usepackage{multicol} %多栏包
+\usepackage{enumerate} %可以方便地自定义枚举标题
+\usepackage{multirow} %表格中多行单元格合并
+\usepackage{wasysym} %可以使用wasysym里的一堆奇奇怪怪的符号
+\usepackage{hyperref} % url
+%%%%%%%%%%%%%%%伪代码%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+%%%%%%%%%%%%%%%画图包%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usepackage{pgfplots} % http://pgfplots.sourceforge.net/gallery.html
+\usetikzlibrary{pgfplots.patchplots} % 拟合支持
+\usetikzlibrary{arrows,shapes,automata,petri,positioning,calc} % 状态图支持
+\usetikzlibrary{arrows.meta} % 箭头
+\usetikzlibrary{shadows} % 阴影支持
+\usepackage{forest} % 画树
+
+\geometry{left = 1.5cm, right = 1.5cm, top=1.5cm, bottom=2cm}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstset{
+	backgroundcolor=\color{white}, 
+	%\tiny < \scriptsize < \footnotesize < \small < \normalsize < \large < \Large < \LARGE < \huge < \Huge
+	basicstyle = \footnotesize,       
+	breakatwhitespace = false,        
+	breaklines = true,                 
+	captionpos = b,                    
+	commentstyle = \color{mygreen}\bfseries,
+	extendedchars = false,
+	frame = shadowbox, 
+	framerule=0.5pt,
+	keepspaces=true,
+	keywordstyle=\color{blue}\bfseries, % keyword style
+	language = C++,                     % the language of code
+	otherkeywords={string}, 
+	numbers=left, 
+	numbersep=5pt,
+	numberstyle=\tiny\color{mygray},
+	rulecolor=\color{black},         
+	showspaces=false,  
+	showstringspaces=false, 
+	showtabs=false,    
+	stepnumber=1,         
+	stringstyle=\color{mymauve},        % string literal style
+	tabsize=4,          
+	title=\lstname           
+}
+
+%\sum\nolimits_{j=1}^{M}   上下标位于求和符号的水平右端，
+%\sum\limits_{j=1}^{M}   上下标位于求和符号的上下处，
+%\sum_{j=1}^{M}  对上下标位置没有设定，会随公式所处环境自动调整。
+
+%%%%%%%%%%%%%画图包%%%%%%%%%%%%%
+\usepackage{tikz}
+%%%%%%%%%%%%%好看的矩形%%%%%%%%%%%%%
+\tikzset{
+  rect1/.style = {
+    shape = rectangle,% 指定样式
+    minimum height=2cm,% 最小高度
+    minimum width=4cm,% 最小宽度
+    align = center,% 文字居中
+    drop shadow,% 阴影
+  }
+}
+%%%%%%%%%%%%%画图背景包%%%%%%%%%%%%%
+\usetikzlibrary{backgrounds}
+
+%%%%%%%%%%%%%在tikz中画一个顶点%%%%%%%%%%%%%
+%%%%%%%%%%%%%#1:node名称%%%%%%%%%%%%%
+%%%%%%%%%%%%%#2:位置%%%%%%%%%%%%%
+%%%%%%%%%%%%%#3:标签%%%%%%%%%%%%%
+\newcommand{\newVertex}[3]{\node[circle, draw=black, line width=1pt, scale=0.8] (#1) at #2{#3}}
+%%%%%%%%%%%%%在tikz中画一条边%%%%%%%%%%%%%
+\newcommand{\newEdge}[2]{\draw [black,very thick](#1)--(#2)}
+%%%%%%%%%%%%%在tikz中放一个标签%%%%%%%%%%%%%
+%%%%%%%%%%%%%#1:名称%%%%%%%%%%%%%
+%%%%%%%%%%%%%#2:位置%%%%%%%%%%%%%
+%%%%%%%%%%%%%#3:标签内容%%%%%%%%%%%%%
+\newcommand{\newLabel}[3]{\node[line width=1pt] (#1) at #2{#3}}
+
+%%%%%%%%%%%%%强制跳过一行%%%%%%%%%%%%%
+\newcommand{\jumpLine} {\hspace*{\fill} \par}
+%%%%%%%%%%%%%关键点指令,可用itemise替代%%%%%%%%%%%%%
+\newcommand{\average}[1]{\left\langle #1\right\rangle }
+%%%%%%%%%%%%%表格内嵌套表格%%%%%%%%%%%%%
+\newcommand{\keypoint}[2]{$\bullet$\textbf{#1}\quad#2\par}
+%%%%%%%%%%%%%<T>平均值表示%%%%%%%%%%%%%
+\newcommand{\tabincell}[2]{\begin{tabular}{#1}#2\end{tabular}}%放在导言区
+%%%%%%%%%%%%%大黑点item头%%%%%%%%%%%%%
+\newcommand{\itemblt}{\item[$\bullet$]}
+%%%%%%%%%%%%%大圈item头%%%%%%%%%%%%%
+\newcommand{\itemc}{\item[$\circ$]}
+%%%%%%%%%%%%%大星星item头%%%%%%%%%%%%%
+\newcommand{\itembs}{\item[$\bigstar$]}
+%%%%%%%%%%%%%右▷item头%%%%%%%%%%%%%
+\newcommand{\itemrhd}{\item[$\rhd$]}
+%%%%%%%%%%%%%定义为%%%%%%%%%%%%%
+\newcommand{\defas}{=_{df}}
+%%%%%%%%%%%%%偏导%%%%%%%%%%%%%
+\newcommand{\partialx}[2]{\frac{\partial #1}{\partial #2}}
+%%%%%%%%%%%%%蕴含%%%%%%%%%%%%%
+\newcommand{\imp}{\rightarrow}
+%%%%%%%%%%%%%上取整%%%%%%%%%%%%%
+\newcommand{\ceil}[1]{\lceil#1\rceil}
+%%%%%%%%%%%%%下取整%%%%%%%%%%%%%
+\newcommand{\floor}[1]{\lfloor#1\rfloor}
+%%%%%%%%%%%%%textbullet%%%%%%%%%%%%%
+\newcommand{\blt}{\bullet}
+%%%%%%%%%%%%%右箭头上加字%%%%%%%%%%%%%
+\newcommand{\righttextarrow}[1]{\stackrel{#1}{\longrightarrow}}
+%%%%%%%%%%%%%左箭头上加字%%%%%%%%%%%%%
+\newcommand{\lefttextarrow}[1]{\stackrel{#1}{\longleftarrow}}
+
+%%%%%%%%%%%%%双线分割线%%%%%%%%%%%%%
+\newcommand*{\doublerule}{\hrule width \hsize height 1pt \kern 0.5mm \hrule width \hsize height 2pt}
+%%%%%%%%%%%%%双线中间可加东西的分割线%%%%%%%%%%%%%
+\newcommand\doublerulefill{\leavevmode\leaders\vbox{\hrule width .1pt\kern1pt\hrule}\hfill\kern0pt }
+%%%%%%%%%%%%%左大括号%%%%%%%%%%%%%
+\newcommand{\leftbig}[1]{\left\{\begin{array}{l}#1\end{array}\right.}
+%%%%%%%%%%%%%矩阵%%%%%%%%%%%%%
+\newcommand{\mat}[2]{\left[\begin{array}{#1}#2\end{array}\right]}
+%%%%%%%%%%%%%可换行圆角文本框%%%%%%%%%%%%%
+\newcommand{\ovalboxn}[1]{\ovalbox{\tabincell{l}{#1}}}
+%%%%%%%%%%%%%设置section的counter, 使从1开始%%%%%%%%%%%%%
+\setcounter{section}{0}
+
+%%%%%%%%%%%%%Colors%%%%%%%%%%%%%
+\newcommand{\lightercolor}[3]{% Reference Color, Percentage, New Color Name
+    \colorlet{#3}{#1!#2!white}
+}
+\newcommand{\darkercolor}[3]{% Reference Color, Percentage, New Color Name
+    \colorlet{#3}{#1!#2!black}
+}
+\definecolor{aquamarine}{rgb}{0.5, 1.0, 0.83}
+\definecolor{Seashell}{RGB}{255, 245, 238} %背景色浅一点的
+\definecolor{Firebrick4}{RGB}{255, 0, 0}%文字颜色红一点的
+\lightercolor{gray}{15}{lgray}
+\newcommand{\hlg}[1]{
+	\begingroup
+		\sethlcolor{lgray}%背景色
+		\textcolor{black}{\hl{\mbox{#1}}}%textcolor里面对应文字颜色
+	\endgroup
+}
+
+
+
+\title{编译原理与技术 H5}
+\date{}
+\author{PB18111697 王章瀚}
+
+\begin{document}
+\maketitle
+\section*{4.12}
+\noindent 为文法
+$$\begin{array}{l}
+S\rightarrow(L)|a\\
+L\rightarrow L,S|S
+\end{array}$$
+\subsection*{(b)}
+\noindent 分别写出相应的语法制导定义, 翻译方案以及预测翻译器, 它打印出每个\hlg{$a$}在句子中是第几个字符. 例如, 当句子是 \hlg{$(a,(a,(a,a),(a)))$} 时, 打印结果是 \hlg{2 5 8 10 14}\\
+
+\noindent \textcolor{red}{消除了左递归的1,2问答案在第3问都有描述}
+\subsubsection*{1. 语法制导定义}
+\noindent 分析: 
+\begin{itemize}
+	\item 字符$a$的位置能够通过其左边部分判断, 因此使用L属性即可解决
+	\item 字符$a$的位置不可能由字符$a$本身就判定, 因此需要继承属性
+\end{itemize}
+综上: 用$first$(继承属性)和$last$(综合属性)表示一个文法符号的第一个字符和最后一个字符的位置， 并加入一个$S'\rightarrow S$以作为初始情况.
+	\begin{center}
+	\begin{tabular}{l|l}
+	\hline
+	产生式 & 语义规则 \\
+	\hline
+	$S'\rightarrow S$ & \tabincell{l}{$L.first=1$} \\
+	\hline
+	$S\rightarrow (L)$ & \tabincell{l}{$L.first=S.first+1$\\$S.last=L.last+1$} \\
+	\hline
+	$S\rightarrow a$ & \tabincell{l}{$S.last=S.first$\\$print(S.first)$} \\
+	\hline
+	$L\rightarrow L_1,S$ & \tabincell{l}{$L_1.first=L.first$\\ $S.first=L_1.last+2$\\$L.last=S.last$} \\
+	\hline
+	$L\rightarrow S$ & \tabincell{l}{$S.first=L.first$\\$L.last=S.last$} \\
+	\hline
+	\end{tabular}
+	\end{center}
+\subsubsection*{2. 翻译方案}
+\noindent 根据$first$和$last$的综合和继承性, 很容易写出以下翻译方案:
+$$\begin{array}{l}
+S'\rightarrow \{S'.first=1;\}S\\
+S\rightarrow \{L.first=S.first;\} (L) \{S.last=L.last+1;\}\\
+S\rightarrow a \{S.last=S.first;\ print(S.first);\}\\
+L\rightarrow \{L_1.first=L.first\} L_1,\{S.first=L_1.last+2;\}S\{L.last=S.last;\}\\
+L\rightarrow \{S.first=L.first;\}S\{L.last=S.last;\}
+\end{array}$$
+\subsubsection*{3. 预测翻译器}
+\noindent 为了设计预测翻译器, 首先需要消除左递归, 使之成为LL(1)文法. 改进后文法如下:
+$$\begin{array}{l}
+Q\rightarrow S\\
+S\rightarrow (L)\\
+S\rightarrow a\\
+L\rightarrow SR\\
+R\rightarrow ,SR_1\\
+R\rightarrow \epsilon\\
+\end{array}$$
+相应语法制导定义为:
+\begin{center}
+	\begin{tabular}{l|l}
+		\hline
+		产生式 & 语义规则 \\
+		\hline
+		$Q\rightarrow S$ & \tabincell{l}{S.first=1} \\
+		\hline
+		$S\rightarrow(L)$ & \tabincell{l}{L.first=S.first \\S.last=L.last+1} \\
+		\hline
+		$S\rightarrow a$ & \tabincell{l}{S.last=S.first \\ print(S.first)} \\
+		\hline
+		$L\rightarrow SR$ & \tabincell{l}{S.first=L.first \\ R.first=S.last+1 \\ L.last=R.last}\\
+		\hline
+		$R\rightarrow ,SR_1$ & \tabincell{l}{$S.first=R.first+1$ \\ $R_1.first=S.last+1$ \\ $R.last=R_1.last$}\\
+		\hline
+		$R\rightarrow\epsilon$ & \tabincell{l}{$R.last=R.fisrt$}\\
+		\hline
+	\end{tabular}
+\end{center}
+从而得到翻译方案:
+$$\begin{array}{l}
+Q\rightarrow \{S.first=1;\}S\\
+S\rightarrow \{L.first=S.first;\} (L) \{S.last=L.last+1;\}\\
+S\rightarrow a\{S.last=S.first;\ print(S.first);\}\\
+L\rightarrow \{S.first=L.first\}S\{R.first=S.last+1\}R\{L.last=R.last\}\\
+R\rightarrow ,\{S.first=R.first+1;\}S\{R_1.first=S.last+1;\}R_1\{R.last=R_1.last\}\\
+R\rightarrow \{R.last=R.fisrt\}\\
+\end{array}$$
+进而能够写出其预测翻译器代码如下(\textbf{见下页}), 为了代码言简意赅, 这里没有加入错误处理:
+\newpage
+\begin{lstlisting}[language=c++]
+// 分析 Q 的函数
+void Q() {
+	int s_first = 1;
+	S(s_first);
+}
+
+// 分析 S 的函数
+int S(int s_first) {
+	int s_last;
+	
+	if(lookahread == 'a') { // 产生式 S->a
+		match('a');
+		s_last = s_first;
+	}
+	else { // 产生式 S->(L)
+		int l_first, l_last;
+		l_first = s_first;
+		match('(');
+		l_last = L(l_first);
+		match(')');
+		s_last = l_last + 1;
+	}
+	return s_last
+}
+
+// 分析L的函数
+int L(int l_first) { //产生式 L->SR
+	int l_last, s_first, s_last, r_first, r_last;
+	
+	s_first = l_first;
+	s_last = S(s_first);
+	r_first = s_last + 1;
+	r_last = R(r_first);
+	l_last = r_last;
+	return l_last;
+}
+
+// 分析R的函数
+int R(int r_first) {
+	int r_last;
+	
+	if(lookahead == ',') { // 产生式 R->,SR1
+		int s_first, s_last, r1_first, r1_last;
+		s_first = r_first + 1;
+		s_last = S(s_first);
+		r1_first = s_last + 1;
+		r1_last = R(r1_first);
+		r_last = r1_last;
+	}
+	else {
+		r_last = r_first;
+	}
+	return r_last;
+}
+
+\end{lstlisting}
+
+\end{document}
+
+
+
+
+

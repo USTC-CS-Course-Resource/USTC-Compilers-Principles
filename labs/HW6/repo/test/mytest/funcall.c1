@@ -1,0 +1,9 @@
+void fun() {
+    int a = 5;
+}
+
+int main() {
+    fun();
+    int a = fun();
+    return 0;
+}
