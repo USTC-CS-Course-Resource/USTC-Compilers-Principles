@@ -133,9 +133,16 @@ MAPLE(方舟内部执行引擎)则把不同语言的都统一到一个中间表�
 
 #### 对现存的
 
+##### 问题1
+`JNI`, `Cython`, `Jython` 等是如何实现不同语言之间的交互的?
+
+##### 问题2
+很多能够提高性能的地方编译器都未能识别出来, 比如对循环中不断使用了字符串的长度, 这个长度理应可以存下来, 不必每次循环都重新计算.(后面会给出具体代码). 
+
+
 #### 对未来的
 
-- `Rust` 语言原生对 `安全` 的支持虽然受到了广泛好评, 但其学习曲线和编程难度也饱受非议. 未来是否能够通过智能化的编程模式来辅助开发人员进行相关编程?
+- `Rust` 语言原生对 `安全` 的支持虽然受到了广泛好评, 但其学习曲线和编程难度也饱受非议. 未来是否能够通过`智能化的编程模式`来辅助开发人员进行相关编程?
 - 新型 `AI` 编程语言应当如何取舍其原生支持的东西?
 
 
@@ -143,7 +150,88 @@ MAPLE(方舟内部执行引擎)则把不同语言的都统一到一个中间表�
 
 #### 对现存的
 
+##### 问题1
+就 `JNI` 而言, 它实现了 Java 跨语言交互的功能. 这意味着我们可以使用 Java 调用 c/c++ 的库.
+###### JNI 使用步骤
+1. 在 `Java` 类中声明 Native 方法, 并编译成 `.class` 文件. 这里 `Native` 方法担任的是一个代理角色, 它负责与底层语言对接.
+```java
+package com.hank.jni;
 
+public class HelloWorld {
+    static {
+        System.loadLibrary("Hello");
+    }
+
+    public native void DisplayHello();
+    
+    public static void main(String[] args) {
+        new HelloWorld().DisplayHello();
+    }
+}
+```
+执行 `javac ./com/hank/jni/HelloWorld.java` 以编译  
+2. 用 `javah` 程序, 将上步中的 class 文件生成头文件
+用 `javah -jni com.hank.jni.HelloWorld` 生成头文件.
+3. 用其他语言实现上述头文件中的函数, 生成动态库, 供 Java 使用。
+实现对应函数并执行 `g++ jni_helloworld.cpp -shared -o libHello.so -I /opt/jdk1.8.0_261/include/` 编译出动态链接库  
+然后运行 `java -Djava.library.path=. com.hank.jni.HelloWorld` 即可输出
+```shell
+From jni_helloworldImpl.cpp :Hello world !
+```
+
+从整个流程也就可以看出来它的主要原理了.
+
+##### 问题2
+###### 例一. 函数求值结果复用优化
+```c
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define N 300000
+
+#ifndef OUT
+int main() {
+    char* str = (char*)malloc(sizeof(char)*N);
+    for (int i = 0; i < N-1; i++) {
+        str[i] = 'a';
+    }
+    str[N-1] = 0;
+    int i = 0;
+    while (1) {
+        int len = strlen(str);
+        if (i < len) i++;
+        else break;
+        printf("%d\n", i);
+    }
+}
+#else
+int main() {
+    char* str = (char*)malloc(sizeof(char)*N);
+    for (int i = 0; i < N-1; i++) {
+        str[i] = 'a';
+    }
+    str[N-1] = 0;
+    int i = 0;
+    int len = strlen(str);
+    while (1) {
+        if (i < len) i++;
+        else break;
+        printf("%d\n", i);
+    }
+}
+#endif
+```
+```shell
+gcc strlentest.c -o strlentest && time ./strlentest
+gcc strlentest.c -o strlentest -DOUT && time ./strlentest
+```
+
+运行命令即可计时, 可以明显看出来如果把求字符串长度放在外面就会有明显的性能提升.
+
+###### 
+
+ 
 
 #### 对未来的
 
@@ -159,15 +247,3 @@ MAPLE(方舟内部执行引擎)则把不同语言的都统一到一个中间表�
 
 - 构建统一的中间表示会不会造成优化问题? 例如方舟编译器让 c 和 Java 有一个公共的中间表示, 这种表示很有可能就丧失了语言本身的特点, 而那些特点又通常能作为编译器优化的方向或思路. 如果统一构建为中间表示可能会导致这些优化方向都不再有效. 那么这时应当如何选取编译优化方向呢?
 - 在当前语言有了各种各样有用的库的情况下, 为什么要选择开发一种原生支持这些库的语言, 而不是在原有语言上对这些库的编译等性能进行优化呢?
-
-###### 挑战课题
-
-1. 通用编程语言的扩展机制研究, 以及新型AI编程语言的设计和实现
-    重点突破编程语言核心技术：
-    1. 探索构建通用编程语言各种可扩展机制的设计和实现：包括但不限于元编程, 跨语言互操作, eDSL以及其类型系统, 可扩展编译器框架
-    2. 新型AI编程语言设计和实现：基于可扩展通用编程语言, 构建一套面向AI算法开发的编程语言, 实现语言原生自动微分, 动静态图融合, 稀疏矩阵编程等核心技术. 
-
-2. 基于开放体系架构下的DSA设计与编译工具链技术研究：针对不同场景应用都代表了对芯片不同的需求, 能否定制不同应用所需要的架构. 
-
-3. 针对特定芯片编译器的研究:如何把软件运行在芯片上, 这是和芯片开发研究同步进行的, 问题是如何同步？
-4. 面向应用的统一化（公共中间表示）的研究：超异构的时代有非常多不同类型的核, 处理器等. 如何统一地采用中间表达来满足不同类型的应用的编程. 在芯片层级我们也希望这种统一的表达. 从中间表达去实现这种表达. 统一的中间表达对整个超异构芯片进行编程. 
