@@ -119,7 +119,7 @@ GlobalDecl:ConstDecl{
 ConstDecl:CONST DefType ConstDefList SEMICOLON{
     $$=$3;
     for (auto &node : $$) {
-      node->btype = $2;
+      node->type = $2;
     }
   }
 	;
@@ -146,7 +146,7 @@ DefType:INT{
 
 ConstDef:IDENTIFIER ASSIGN Exp{
     $$=new SyntaxTree::VarDef();
-    $$->is_constant = true;
+    $$->is_const = true;
     $$->is_inited = true;
     $$->name=$1;
     $$->initializers.push_back(SyntaxTree::Ptr<SyntaxTree::Expr>($3));
@@ -157,7 +157,7 @@ ConstDef:IDENTIFIER ASSIGN Exp{
 VarDecl:DefType VarDefList SEMICOLON{
     $$=$2;
     for (auto &node : $$) {
-      node->btype = $1;
+      node->type = $1;
     }
   }
 	;
@@ -376,14 +376,16 @@ Exp:PLUS Exp %prec UPLUS{
 
 Number: FLOATCONST {
     $$ = new SyntaxTree::Literal();
-    $$->is_int = false;
-    $$->float_const = $1;
+    $$->is_const = true;
+    $$->type = SyntaxTree::Type::FLOAT;
+    $$->fval = $1;
     $$->loc = @$;
   }
   | INTCONST {
     $$ = new SyntaxTree::Literal();
-    $$->is_int = true;
-    $$->int_const = $1;
+    $$->is_const = true;
+    $$->type = SyntaxTree::Type::INT;
+    $$->ival = $1;
     $$->loc = @$;
   }
   ;

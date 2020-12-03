@@ -1,0 +1,15 @@
+void fun1() {
+    return;
+}
+
+int fun2() {
+    return 1.0;
+}
+
+float fun3() {
+    return 3;
+}
+
+void fun4() {
+    return 5;
+}

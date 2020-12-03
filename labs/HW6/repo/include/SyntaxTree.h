@@ -4,6 +4,7 @@
 #include <vector>
 #include <memory>
 #include <string>
+#include <cassert>
 
 #include "location.hh"
 
@@ -22,7 +23,8 @@ using Position = yy::location;
 // Enumerations
 enum class Type
 {
-    INT = 0,
+    ERROR = -1,
+    INT,
     FLOAT,
     VOID
 };
@@ -35,6 +37,16 @@ enum class BinOp
     DIVIDE,
     MODULO
 };
+
+template <class T>
+T operate(BinOp op, T lv, T rv) {
+    if (op == BinOp::PLUS) return lv + rv;
+    else if (op == BinOp::MINUS) return lv - rv;
+    else if (op == BinOp::MULTIPLY) return lv * rv;
+    else if (op == BinOp::DIVIDE) return lv / rv;
+    else assert(op == BinOp::MODULO);
+    return 0;
+}
 
 enum class UnaryOp
 {
@@ -98,6 +110,10 @@ struct FuncDef : GlobalDef
 // Virtual base of expressions.
 struct Expr : virtual Node
 {
+    bool is_const;
+    Type type;
+    int ival;
+    double fval;
     virtual void accept(Visitor &visitor) = 0;
 };
 
@@ -128,9 +144,6 @@ struct LVal : Expr
 // Expression constructed by a literal number.
 struct Literal : Expr
 {
-    bool is_int;
-    int int_const;
-    double float_const;
     virtual void accept(Visitor &visitor) override final;
 };
 
@@ -151,8 +164,8 @@ struct Stmt : virtual Node
 // represents a single variable definition.
 struct VarDef : Stmt, GlobalDef
 {
-    bool is_constant;
-    Type btype;
+    bool is_const;
+    Type type;
     std::string name;
     bool is_inited; // This is used to verify `{}`
     PtrList<Expr> array_length; // empty for non-array variables

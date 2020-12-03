@@ -1,0 +1,7 @@
+int fun() {
+    return 5;
+}
+
+int fun() {
+    return 2;
+}

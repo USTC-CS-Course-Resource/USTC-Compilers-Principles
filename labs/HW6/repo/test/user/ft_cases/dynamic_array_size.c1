@@ -1,0 +1,10 @@
+// correct usage
+int a[3][2] = {1.6, 2.8, 3.5};
+float b[2] = {2};
+int c[3] = {a[0][0], a[1][0]};
+const int d = 5;
+int e[3][d];
+
+// wrong usage
+int g = 5;
+int h[3][g];

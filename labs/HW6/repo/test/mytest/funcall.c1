@@ -5,6 +5,8 @@ int fun() {
 
 int main() {
     fun();
+    1;
+    fun()*2;
     int a = 5+fun();
     return fun();
 }

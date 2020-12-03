@@ -63,9 +63,9 @@ void SyntaxTreePrinter::visit(VarDef &node)
 {
     print_indent();
     bool is_array = false;
-    if (node.is_constant)
+    if (node.is_const)
         std::cout << "const ";
-    std::cout << type2str[node.btype] << " " << node.name;
+    std::cout << type2str[node.type] << " " << node.name;
     for (auto length : node.array_length) {
         std::cout << "[";
         length->accept(*this);
@@ -118,10 +118,10 @@ void SyntaxTreePrinter::visit(LVal &node)
 
 void SyntaxTreePrinter::visit(Literal &node)
 {
-    if (node.is_int)
-        std::cout << node.int_const;
+    if (node.type == Type::INT)
+        std::cout << node.ival;
     else
-        std::cout << node.float_const;
+        std::cout << node.fval;
 }
 
 void SyntaxTreePrinter::visit(FuncCallExpr &node)
