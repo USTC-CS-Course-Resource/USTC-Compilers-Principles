@@ -1,0 +1,4 @@
+int a[5];
+const int c = 1;
+const float k = 1.0;
+int d = a[c + k];

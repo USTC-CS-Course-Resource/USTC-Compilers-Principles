@@ -3,6 +3,7 @@
 
 #include "SyntaxTree.h"
 #include "ErrorReporter.h"
+#include "location.hh"
 #include <cassert>
 
 class SyntaxTreeChecker : public SyntaxTree::Visitor
@@ -43,12 +44,14 @@ private:
     {
         bool is_const;
         Type type;
-        std::vector<int> array_length;
+        bool is_used;
+        std::string name;
+        std::vector<int> array_length;  // for int or float, array_length.size() == 0
         std::vector<Value>array_value;
 
         Variable() = default;
-        Variable(bool is_const, Type type) 
-            : is_const(is_const), type(type) {}
+        Variable(bool is_const, Type type, std::string name) 
+            : is_const(is_const), type(type), is_used(false), name(name) {}
     };
     using PtrVariable = std::shared_ptr<Variable>;
     
@@ -69,7 +72,7 @@ private:
         assert(!variables.empty());
         PtrVariable ptr = variables.front()[node.name];
         if (ptr != nullptr) return nullptr;
-        ptr = PtrVariable(new Variable(node.is_const, node.type));
+        ptr = PtrVariable(new Variable(node.is_const, node.type, node.name));
         variables.front()[node.name] = ptr;
         return ptr;
     }
@@ -96,6 +99,14 @@ private:
         else return "error";
     }
     
+    void warn_variable_not_used(yy::location loc) {
+        for (auto variable: variables.front()) {
+            if (!variable.second->is_used) {
+                err.warn(loc, WARN_VARIABLE_NOT_USED,
+                    "variable \033[4m" + variable.second->name + "\033[0m wasn't used");
+            }
+        }
+    }
 };
 
 #endif  // _C1_SYNTAX_TREE_CHECKER_H_

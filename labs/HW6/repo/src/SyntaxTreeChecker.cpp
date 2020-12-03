@@ -3,21 +3,14 @@
 
 using namespace SyntaxTree;
 
-std::string Type_to_string(Type t) {
-    if (t == Type::INT) return "int";
-    else if (t == Type::FLOAT) return "float";
-    else if (t == Type::VOID) return "void";
-    else return "error";
-}
-
 void SyntaxTreeChecker::visit(Assembly &node)
 {
     enter_scope();
     for (auto def : node.global_defs) {
         def->accept(*this);
     }
+    warn_variable_not_used(node.loc);
     exit_scope();
-    // TODO: 变量未使用检查
     if (!functions.count("main")) {
         // main function isn't defined
         err.warn(node.loc, WARN_NOMAIN,
@@ -71,13 +64,14 @@ void SyntaxTreeChecker::visit(BinaryExpr &node) {
         }
         else {
             assert(lhs->type == Type::INT && rhs->type == Type::INT);
+            node.type = Type::INT;
             if (op == BinOp::MODULO) node.ival = lhs->ival % rhs->ival;
-            else node.fval = operate<int>(op, lhs->ival, rhs->ival);
+            else node.ival = operate<int>(op, lhs->ival, rhs->ival);
         }
     }
-    else {
-        node.is_const = false;
-    }
+    else node.is_const = false;
+    // printf("expr ival: %d\n", node.ival);
+    // printf("expr fval: %lf\n", node.fval);
 }
 
 void SyntaxTreeChecker::visit(UnaryExpr &node) {
@@ -110,29 +104,36 @@ void SyntaxTreeChecker::visit(LVal &node) {
             "undefined left val: \033[4m" + node.name + "\033[0m");
         exit(1);
     }
+    ptr->is_used = true;
     node.is_const = ptr->is_const;
     
     size_t index_dim_size = node.array_index.size();
     size_t dim_size = ptr->array_length.size();
     if (index_dim_size > dim_size) {
-        err.error(node.loc, ERROR_ARRAY_INDEX_DIM_OUTOF_SIZE,
-            "index dimension outof size");
+        if (dim_size == 0) {
+            err.error(node.loc, ERROR_NOT_ARRAY, "not an array: \033[4m" + node.name + "\033[0m");
+            exit(1);
+        }
+        err.error(node.loc, ERROR_ARRAY_INDEX_DIM_OUTOF_SIZE, "index dimension outof size");
         exit(1);
     }
     size_t array_size = 1;
-    for (auto i: ptr->array_length) {
-        array_size *= i;
+    if (dim_size > 0) {
+        for (auto i: ptr->array_length) {
+            array_size *= i;
+        }
+        array_size /= ptr->array_length[0];
     }
-    array_size /= ptr->array_length[0];
     size_t index = 0;
     for (size_t i = 0; i < index_dim_size; i++) {
         Ptr<Expr> expr = node.array_index[i];
         expr->accept(*this);
-        if (expr->type != Type::INT 
-                || expr->ival < 0 
-                || expr->ival >= ptr->array_length[i]) {
-            err.error(node.loc, ERROR_ARRAY_INDEX_OUTOF_BOUND,
-                "index out of bound");
+        if (expr->type != Type::INT) {
+            err.error(node.loc, ERROR_ARRAY_INDEX_NOT_INT, "index isn't integer.");
+            exit(1);
+        }
+        if (expr->ival < 0 || expr->ival >= ptr->array_length[i]) {
+            err.error(node.loc, ERROR_ARRAY_INDEX_OUTOF_BOUND, "index out of bound");
             exit(1);
         }
         index += array_size * expr->ival;
@@ -150,14 +151,14 @@ void SyntaxTreeChecker::visit(Literal &node) {}
 void SyntaxTreeChecker::visit(FuncCallExpr &node) {
     if (!functions.count(node.name)) {
         // undefined function
-        err.error(node.loc, ERROR_UNDEFINED_FUNC,
-            "undefined function: \033[4m" + node.name + "\033[0m");
+        err.error(node.loc, ERROR_UNDEFINED_FUNC, "undefined function: \033[4m" + node.name + "\033[0m");
         exit(1);
     }
 }
 
 void SyntaxTreeChecker::visit(ReturnStmt &node) {
     // TODO: 暂且认为比如是int, 也可以不返回(c也是这样的)
+    node.ret->accept(*this);
     if (node.ret == nullptr) {
         // only return;
         if (ret_type != Type::VOID) {
@@ -172,14 +173,12 @@ void SyntaxTreeChecker::visit(ReturnStmt &node) {
         if (ret_type == Type::INT && node.ret->type == Type::FLOAT) {
             node.ret->type = Type::INT;
             node.ret->ival = node.ret->fval;
-            err.warn(node.loc, WARNING_IMPLICIT_CAST, 
-                "return \033[4mfloat\033[0m as \033[4mint\033[0m");
+            err.warn(node.loc, WARNING_IMPLICIT_CAST, "return \033[4mfloat\033[0m as \033[4mint\033[0m");
         }
         else if (ret_type == Type::FLOAT && node.ret->type == Type::INT) {
             node.ret->type = Type::FLOAT;
             node.ret->fval = node.ret->ival;
-            err.warn(node.loc, ERROR_INVALID_RETURN, 
-                "return \033[4mint\033[0m as \033[4mfloat\033[0m");
+            err.warn(node.loc, ERROR_INVALID_RETURN, "return \033[4mint\033[0m as \033[4mfloat\033[0m");
         }
         else {
             err.error(node.loc, ERROR_INVALID_RETURN,
@@ -221,20 +220,19 @@ void SyntaxTreeChecker::visit(VarDef &node) {
         }
         ptr->array_length.push_back(expr->ival);
     }
-    if (dim_size == 0) {
-        ptr->array_length.push_back(1);
-    }
+    
     size_t array_size = 1;
     for (auto i: ptr->array_length) {
         array_size *= i;
     }
+    // initialize all to 0
     for (size_t i = 0; i < array_size; i++) {
         ptr->array_value.push_back(Value(node.type, 0, 0));
     }
     if (node.is_inited) {
         // array_value
-        size_t size = node.initializers.size();
-        for (size_t i = 0; i < size; i++) {
+        size_t init_size = node.initializers.size();
+        for (size_t i = 0; i < init_size; i++) {
             Ptr<Expr> expr = node.initializers[i];
             expr->accept(*this);
             if (expr->type != ptr->type) {
@@ -261,10 +259,6 @@ void SyntaxTreeChecker::visit(VarDef &node) {
             // printf("expr->fval dim(%lu) %f\n", i,expr->fval);
             // printf("expr->ival dim(%lu) %d\n", i,expr->ival);
             ptr->array_value[i] = Value(expr->type, expr->ival, expr->fval);
-            
-        }
-        for (auto expr: node.initializers) {
-            expr->accept(*this);
         }
     }
 }
@@ -285,6 +279,7 @@ void SyntaxTreeChecker::visit(BlockStmt &node) {
     for (auto stmt: node.body) {
         stmt->accept(*this);
     }
+    warn_variable_not_used(node.loc);
     exit_scope();
 }
 void SyntaxTreeChecker::visit(EmptyStmt &node) {}

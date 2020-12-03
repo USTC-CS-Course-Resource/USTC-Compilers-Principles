@@ -20,3 +20,5 @@
 2fc6a68c5d26c600d7e493eacb6fea3e4aeb2184 6a40bf718f76d4c290f14939d86d9a1371d2122c RabbitWhite1 <895650485@qq.com> 1606999739 +0800	checkout: moving from master to inyy
 6a40bf718f76d4c290f14939d86d9a1371d2122c 2fc6a68c5d26c600d7e493eacb6fea3e4aeb2184 RabbitWhite1 <895650485@qq.com> 1606999774 +0800	checkout: moving from inyy to master
 2fc6a68c5d26c600d7e493eacb6fea3e4aeb2184 888eca834e7e1aff9fac8fe02acb2aeb47df8dd3 RabbitWhite1 <895650485@qq.com> 1607009961 +0800	commit: array check, const left-val, return check, calculate lval and expr
+888eca834e7e1aff9fac8fe02acb2aeb47df8dd3 3fdf054b99934e92a585dbc0b353873910327710 RabbitWhite1 <895650485@qq.com> 1607012816 +0800	commit: fix bugs in expr calculate for int, int
+3fdf054b99934e92a585dbc0b353873910327710 dbdce141111a7d012e3dbf579e19f377b7e3a10f RabbitWhite1 <895650485@qq.com> 1607014491 +0800	commit: visit ret

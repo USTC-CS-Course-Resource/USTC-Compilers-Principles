@@ -1,6 +1,6 @@
 int a = 5;
 int main() {
     int a = 7;
-    return 0;
+    return a;
 }
-int a =8;
+int a = 8;
