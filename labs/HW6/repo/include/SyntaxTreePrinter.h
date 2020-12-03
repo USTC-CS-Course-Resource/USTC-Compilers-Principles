@@ -12,6 +12,7 @@ public:
     virtual void visit(SyntaxTree::UnaryExpr &node) override;
     virtual void visit(SyntaxTree::LVal &node) override;
     virtual void visit(SyntaxTree::Literal &node) override;
+    virtual void visit(SyntaxTree::FuncCallExpr &node) override;
     virtual void visit(SyntaxTree::ReturnStmt &node) override;
     virtual void visit(SyntaxTree::VarDef &node) override;
     virtual void visit(SyntaxTree::AssignStmt &node) override;

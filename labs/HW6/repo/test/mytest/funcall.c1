@@ -1,9 +1,10 @@
-void fun() {
+int fun() {
     int a = 5;
+    return a;
 }
 
 int main() {
     fun();
-    int a = fun();
-    return 0;
+    int a = 5+fun();
+    return fun();
 }

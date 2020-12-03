@@ -124,6 +124,11 @@ void SyntaxTreePrinter::visit(Literal &node)
         std::cout << node.float_const;
 }
 
+void SyntaxTreePrinter::visit(FuncCallExpr &node)
+{
+    std::cout << node.name << "()";
+}
+
 void SyntaxTreePrinter::visit(ReturnStmt &node)
 {
     print_indent();
@@ -147,7 +152,8 @@ void SyntaxTreePrinter::visit(AssignStmt &node)
 void SyntaxTreePrinter::visit(FuncCallStmt &node)
 {
     print_indent();
-    std::cout << node.name << "()" << std::endl;
+    node.expr->accept(*this);
+    std::cout << ";" << std::endl;
 }
 
 void SyntaxTreePrinter::visit(EmptyStmt &)

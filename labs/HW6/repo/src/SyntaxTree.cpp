@@ -9,6 +9,7 @@ void BinaryExpr::accept(Visitor &visitor) { visitor.visit(*this); }
 void UnaryExpr::accept(Visitor &visitor) { visitor.visit(*this); }
 void LVal::accept(Visitor &visitor) { visitor.visit(*this); }
 void Literal::accept(Visitor &visitor) { visitor.visit(*this); }
+void FuncCallExpr::accept(Visitor &visitor) { visitor.visit(*this); }
 void ReturnStmt::accept(Visitor &visitor) { visitor.visit(*this); }
 void VarDef::accept(Visitor &visitor) { visitor.visit(*this); }
 void AssignStmt::accept(Visitor &visitor) { visitor.visit(*this); }

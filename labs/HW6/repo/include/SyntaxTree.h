@@ -53,6 +53,7 @@ struct BinaryExpr;
 struct UnaryExpr;
 struct LVal;
 struct Literal;
+struct FuncCallExpr;
 
 struct Stmt;
 struct VarDef;
@@ -133,6 +134,13 @@ struct Literal : Expr
     virtual void accept(Visitor &visitor) override final;
 };
 
+// Function call expression.
+struct FuncCallExpr : Expr
+{
+    std::string name;
+    virtual void accept(Visitor &visitor) override final;
+};
+
 // Virtual base for statements.
 struct Stmt : virtual Node
 {
@@ -163,7 +171,7 @@ struct AssignStmt : Stmt
 // Function call statement.
 struct FuncCallStmt : Stmt
 {
-    std::string name;
+    Ptr<Expr> expr;
     virtual void accept(Visitor &visitor) override final;
 };
 
@@ -197,6 +205,7 @@ public:
     virtual void visit(UnaryExpr &node) = 0;
     virtual void visit(LVal &node) = 0;
     virtual void visit(Literal &node) = 0;
+    virtual void visit(FuncCallExpr &node) = 0;
     virtual void visit(ReturnStmt &node) = 0;
     virtual void visit(VarDef &node) = 0;
     virtual void visit(AssignStmt &node) = 0;

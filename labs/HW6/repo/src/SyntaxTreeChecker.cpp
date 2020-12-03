@@ -16,6 +16,7 @@ void SyntaxTreeChecker::visit(BinaryExpr &node) {}
 void SyntaxTreeChecker::visit(UnaryExpr &node) {}
 void SyntaxTreeChecker::visit(LVal &node) {}
 void SyntaxTreeChecker::visit(Literal &node) {}
+void SyntaxTreeChecker::visit(FuncCallExpr &node) {}
 void SyntaxTreeChecker::visit(ReturnStmt &node) {}
 void SyntaxTreeChecker::visit(VarDef &node)
 {

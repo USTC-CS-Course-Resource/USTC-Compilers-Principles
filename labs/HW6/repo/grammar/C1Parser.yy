@@ -1,7 +1,7 @@
 %skeleton "lalr1.cc" /* -*- c++ -*- */
 %require "3.0"
 %defines
-%define parser_class_name {C1Parser}
+%define api.parser.class {C1Parser}
 
 %define api.token.constructor
 %define api.value.type variant
@@ -262,9 +262,9 @@ Stmt:LVal ASSIGN Exp SEMICOLON{
     $$ = temp;
     $$->loc = @$;
   }
-  | IDENTIFIER LPARENTHESE RPARENTHESE SEMICOLON{
+  | Exp SEMICOLON {
     auto temp = new SyntaxTree::FuncCallStmt();
-    temp->name = $1;
+    temp->expr = SyntaxTree::Ptr<SyntaxTree::Expr>($1);
     $$ = temp;
     $$->loc = @$;
   }
@@ -365,6 +365,12 @@ Exp:PLUS Exp %prec UPLUS{
   }
   | Number{
     $$ = $1;
+  }
+  | IDENTIFIER LPARENTHESE RPARENTHESE{
+    auto temp = new SyntaxTree::FuncCallExpr();
+    temp->name = $1;
+    $$ = temp;
+    $$->loc = @$;
   }
   ;
 
