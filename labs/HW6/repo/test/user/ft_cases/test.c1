@@ -1,0 +1,3 @@
+const float a = 1.6 - 9.6;
+const int b = a;
+int c[a];

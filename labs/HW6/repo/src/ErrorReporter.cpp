@@ -16,6 +16,8 @@ void ErrorReporter::warn(Position pos, int code, const std::string &msg)
 
 void ErrorReporter::report(Position pos, int code, const std::string &msg, const std::string &prefix)
 {
+    #define REPORT
+    #ifdef REPORT
     if (prefix.compare("Error") == 0) {
         err << "\033[1;;31m" << prefix << "(" << code << ")\033[0m";
     }
@@ -26,4 +28,6 @@ void ErrorReporter::report(Position pos, int code, const std::string &msg, const
         err << prefix << "(" << code;
     }
     err << " at position " << pos << ": " << msg << std::endl;
+    #else
+    #endif
 }

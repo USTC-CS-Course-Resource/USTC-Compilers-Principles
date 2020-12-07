@@ -89,6 +89,7 @@ private:
     std::unordered_map<std::string, SyntaxTree::Type> functions;
 
     Type ret_type;
+    bool is_returned;
 
     ErrorReporter &err;
 

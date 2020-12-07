@@ -6,3 +6,51 @@
 2fc6a68c5d26c600d7e493eacb6fea3e4aeb2184 888eca834e7e1aff9fac8fe02acb2aeb47df8dd3 RabbitWhite1 <895650485@qq.com> 1607009961 +0800	commit: array check, const left-val, return check, calculate lval and expr
 888eca834e7e1aff9fac8fe02acb2aeb47df8dd3 3fdf054b99934e92a585dbc0b353873910327710 RabbitWhite1 <895650485@qq.com> 1607012816 +0800	commit: fix bugs in expr calculate for int, int
 3fdf054b99934e92a585dbc0b353873910327710 dbdce141111a7d012e3dbf579e19f377b7e3a10f RabbitWhite1 <895650485@qq.com> 1607014491 +0800	commit: visit ret
+dbdce141111a7d012e3dbf579e19f377b7e3a10f 253d4321ab0c5e97d53af564524528d1cfc5ac78 RabbitWhite1 <895650485@qq.com> 1607014643 +0800	commit: remove comment
+253d4321ab0c5e97d53af564524528d1cfc5ac78 1d939d3373cfa188eeae61a0c118c2a64ea580de RabbitWhite1 <895650485@qq.com> 1607017070 +0800	commit: invalid oprand
+1d939d3373cfa188eeae61a0c118c2a64ea580de 31c1c27488ca46c990b8982118a398d2ec9ab604 RabbitWhite1 <895650485@qq.com> 1607098199 +0800	reset: moving to 31c1c27
+31c1c27488ca46c990b8982118a398d2ec9ab604 1d939d3373cfa188eeae61a0c118c2a64ea580de RabbitWhite1 <895650485@qq.com> 1607098216 +0800	reset: moving to 1d939d3
+1d939d3373cfa188eeae61a0c118c2a64ea580de 9c6c1f6123221d6286712a13aba6265e2a02a26d RabbitWhite1 <895650485@qq.com> 1607098234 +0800	reset: moving to 9c6c1f6
+9c6c1f6123221d6286712a13aba6265e2a02a26d 1d939d3373cfa188eeae61a0c118c2a64ea580de RabbitWhite1 <895650485@qq.com> 1607098246 +0800	reset: moving to 1d939d3
+1d939d3373cfa188eeae61a0c118c2a64ea580de 2bba8a433cf79cc29daef959916abc10d29e03c7 RabbitWhite1 <895650485@qq.com> 1607098262 +0800	commit: use parser_class_name
+2bba8a433cf79cc29daef959916abc10d29e03c7 db2387e7fc1e0e2fe3e7a3c63f2991990232de7e RabbitWhite1 <895650485@qq.com> 1607098283 +0800	pull: Merge made by the 'recursive' strategy.
+db2387e7fc1e0e2fe3e7a3c63f2991990232de7e 9bcfaed08d3928b5f5e8e0be67966645efb794fe RabbitWhite1 <895650485@qq.com> 1607098597 +0800	commit: return check
+9bcfaed08d3928b5f5e8e0be67966645efb794fe 32a130ee4938a861a5f14d3271f77f0006feb825 RabbitWhite1 <895650485@qq.com> 1607100346 +0800	commit: operate void
+32a130ee4938a861a5f14d3271f77f0006feb825 3e1131010639771202d5585604086edb48cfe3bf RabbitWhite1 <895650485@qq.com> 1607100356 +0800	pull: Merge made by the 'recursive' strategy.
+3e1131010639771202d5585604086edb48cfe3bf 0c3c088de847d353acf495261bd62bdc292a994d RabbitWhite1 <895650485@qq.com> 1607133543 +0800	commit: main not return int as error
+0c3c088de847d353acf495261bd62bdc292a994d 3e82fa671f217b30494dc00730393d9bc6492aac RabbitWhite1 <895650485@qq.com> 1607133575 +0800	pull: Merge made by the 'recursive' strategy.
+3e82fa671f217b30494dc00730393d9bc6492aac 642c4c5f6bec1388cd70c7287588e08c44fbe8ad RabbitWhite1 <895650485@qq.com> 1607137616 +0800	commit: no return as warn
+642c4c5f6bec1388cd70c7287588e08c44fbe8ad 12ad5f5511554c1be0225b859c97f73072c08efc RabbitWhite1 <895650485@qq.com> 1607137838 +0800	pull: Merge made by the 'recursive' strategy.
+12ad5f5511554c1be0225b859c97f73072c08efc 4b2e6bdc648f7f99f6a208d4627b515df05eceb8 RabbitWhite1 <895650485@qq.com> 1607140252 +0800	commit: macro to disable report
+4b2e6bdc648f7f99f6a208d4627b515df05eceb8 b60ad0f87679aa115107b8af0bf458bc3f763059 RabbitWhite1 <895650485@qq.com> 1607140267 +0800	pull: Merge made by the 'recursive' strategy.
+b60ad0f87679aa115107b8af0bf458bc3f763059 bd65fb651a43d4730eddb8796b41dd9df1f45923 RabbitWhite1 <895650485@qq.com> 1607140346 +0800	commit: enable REPORT
+bd65fb651a43d4730eddb8796b41dd9df1f45923 6882f8fb09c6ccb0d53988de2aa1bd4eeb01ea14 RabbitWhite1 <895650485@qq.com> 1607140357 +0800	pull: Merge made by the 'recursive' strategy.
+6882f8fb09c6ccb0d53988de2aa1bd4eeb01ea14 c3928b8d2f792c8742f77904c03a63a70113eeeb RabbitWhite1 <895650485@qq.com> 1607145261 +0800	commit: init const with non const check
+c3928b8d2f792c8742f77904c03a63a70113eeeb 677319231c772cb5cf572e4a9eb277b2ee8e8d8f RabbitWhite1 <895650485@qq.com> 1607145277 +0800	pull: Merge made by the 'recursive' strategy.
+677319231c772cb5cf572e4a9eb277b2ee8e8d8f b174e674bb66034c8122cb81237f3a56c64af355 RabbitWhite1 <895650485@qq.com> 1607146484 +0800	commit: fix bugs when calculating
+b174e674bb66034c8122cb81237f3a56c64af355 c6b47eb38ccec0a78a5f48da1fc24f2d6c72297a RabbitWhite1 <895650485@qq.com> 1607146497 +0800	pull: Merge made by the 'recursive' strategy.
+c6b47eb38ccec0a78a5f48da1fc24f2d6c72297a dc835b348c9246d9cd9f7805334f24d515f158ac RabbitWhite1 <895650485@qq.com> 1607146533 +0800	commit: remove printf
+dc835b348c9246d9cd9f7805334f24d515f158ac f5e9a5ea1a2f1c1e23d3fedeab772d7869a454f3 RabbitWhite1 <895650485@qq.com> 1607238564 +0800	commit: name cases
+f5e9a5ea1a2f1c1e23d3fedeab772d7869a454f3 dc6e03f4f10922a0fd5b207d29a4c434cb58cb9a RabbitWhite1 <895650485@qq.com> 1607238579 +0800	pull: Merge made by the 'recursive' strategy.
+dc6e03f4f10922a0fd5b207d29a4c434cb58cb9a 1465e2fcc4526d9ca9e6b9a4ada8808537c80248 RabbitWhite1 <895650485@qq.com> 1607242496 +0800	commit: modify test
+1465e2fcc4526d9ca9e6b9a4ada8808537c80248 9e9723fe1ddb65c6549daa6d824dfffeadc8aa4e RabbitWhite1 <895650485@qq.com> 1607243026 +0800	commit: too many initializer
+9e9723fe1ddb65c6549daa6d824dfffeadc8aa4e cde9a5d061c4890633dcca890bf2abdd447bcb9b RabbitWhite1 <895650485@qq.com> 1607243039 +0800	pull: Merge made by the 'recursive' strategy.
+cde9a5d061c4890633dcca890bf2abdd447bcb9b 04d973292dd39c290bad20d64d8b4db75036216e RabbitWhite1 <895650485@qq.com> 1607243141 +0800	commit: update error.csv
+04d973292dd39c290bad20d64d8b4db75036216e 1c10b90744fd745cbbe4e27defa9f650dd004d2d RabbitWhite1 <895650485@qq.com> 1607243153 +0800	pull: Merge made by the 'recursive' strategy.
+1c10b90744fd745cbbe4e27defa9f650dd004d2d 28a576a2e8071fa4a56d1ba1aca6b6ddf9dcb130 RabbitWhite1 <895650485@qq.com> 1607243346 +0800	commit: too many initializers
+28a576a2e8071fa4a56d1ba1aca6b6ddf9dcb130 224e4de97803063ab1853591b0b1da2ac2d8dc9a RabbitWhite1 <895650485@qq.com> 1607243828 +0800	commit: unary only for int and float
+224e4de97803063ab1853591b0b1da2ac2d8dc9a 3471ed733f5e2685d8e35e0ff7d38ff48bf0f3a8 RabbitWhite1 <895650485@qq.com> 1607243850 +0800	pull: Merge made by the 'recursive' strategy.
+3471ed733f5e2685d8e35e0ff7d38ff48bf0f3a8 28a576a2e8071fa4a56d1ba1aca6b6ddf9dcb130 RabbitWhite1 <895650485@qq.com> 1607243893 +0800	reset: moving to 28a576a
+28a576a2e8071fa4a56d1ba1aca6b6ddf9dcb130 230d105794c201cdd61f7fd39d3d9cebe2e70ebd RabbitWhite1 <895650485@qq.com> 1607244108 +0800	commit: unary only for int/float
+230d105794c201cdd61f7fd39d3d9cebe2e70ebd 5c8dcc348052e47b447d64c43073adea63e9e866 RabbitWhite1 <895650485@qq.com> 1607244488 +0800	commit: can't initialize the float into int when initializing array
+5c8dcc348052e47b447d64c43073adea63e9e866 c23d64107efb909317ed48543c04329c79a76915 RabbitWhite1 <895650485@qq.com> 1607245444 +0800	commit: change no main to error
+c23d64107efb909317ed48543c04329c79a76915 93990916a60169f7e8aa43feade0c4ea35c10d4c RabbitWhite1 <895650485@qq.com> 1607247235 +0800	commit: error->warn
+93990916a60169f7e8aa43feade0c4ea35c10d4c 32f73bafdf1e5fee38e5665a7d07e9536adb1e58 RabbitWhite1 <895650485@qq.com> 1607248175 +0800	commit: main can't be called
+32f73bafdf1e5fee38e5665a7d07e9536adb1e58 ed780f319ef337976b2095efcf2ec38cdc912f1e RabbitWhite1 <895650485@qq.com> 1607249744 +0800	commit: array index must match
+ed780f319ef337976b2095efcf2ec38cdc912f1e 439d59ce551a0001a21622b0548ffbe14934e4fe RabbitWhite1 <895650485@qq.com> 1607250232 +0800	commit: fix bugs of return type
+439d59ce551a0001a21622b0548ffbe14934e4fe 918fd32fcd8a901132b7ef6f06dc7679342ed1dd RabbitWhite1 <895650485@qq.com> 1607250533 +0800	commit: finish all codesgit add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..!
+918fd32fcd8a901132b7ef6f06dc7679342ed1dd 439d59ce551a0001a21622b0548ffbe14934e4fe RabbitWhite1 <895650485@qq.com> 1607250549 +0800	reset: moving to 439d59c
+439d59ce551a0001a21622b0548ffbe14934e4fe 0d2d132b0ba04bd84e131bedfb0cb9fcfb045d60 RabbitWhite1 <895650485@qq.com> 1607250588 +0800	commit: finish all codesgit add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..git add ..!
+0d2d132b0ba04bd84e131bedfb0cb9fcfb045d60 439d59ce551a0001a21622b0548ffbe14934e4fe RabbitWhite1 <895650485@qq.com> 1607250613 +0800	reset: moving to 439d59c
+439d59ce551a0001a21622b0548ffbe14934e4fe a0ef58d908488a1bff58e88366d1777fe31cd630 RabbitWhite1 <895650485@qq.com> 1607250638 +0800	commit: finish all codes
+a0ef58d908488a1bff58e88366d1777fe31cd630 4c2fa3f737a576504b0ea38904e02dcfee3f0746 RabbitWhite1 <895650485@qq.com> 1607257166 +0800	commit: add report

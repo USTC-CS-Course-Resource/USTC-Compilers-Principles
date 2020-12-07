@@ -1,7 +1,7 @@
 %skeleton "lalr1.cc" /* -*- c++ -*- */
 %require "3.0"
 %defines
-%define api.parser.class {C1Parser}
+%define parser_class_name {C1Parser}
 
 %define api.token.constructor
 %define api.value.type variant
@@ -11,6 +11,7 @@
 {
 #include <string>
 #include "SyntaxTree.h"
+#include "ErrorReporter.h"
 class C1Driver;
 }
 
@@ -352,6 +353,10 @@ Exp:PLUS Exp %prec UPLUS{
   | Exp MODULO Exp{
     auto temp = new SyntaxTree::BinaryExpr();
     temp->op = SyntaxTree::BinOp::MODULO;
+    // if (temp->lhs != Type::INT || temp->rhs != Type::INT) {
+    //     err.error(node.loc, ERROR_MODULO_FLOAT, "modulo for float");
+    //     exit(1);
+    // }
     temp->lhs = SyntaxTree::Ptr<SyntaxTree::Expr>($1);
     temp->rhs = SyntaxTree::Ptr<SyntaxTree::Expr>($3);
     $$ = temp;
