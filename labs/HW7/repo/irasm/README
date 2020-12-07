@@ -1,0 +1,12 @@
+./batchall ./src x86
+./batchall ./src x86 -m32
+./batchall ./src arm
+
+./batch switch x86
+./batch switch x86 -m32
+./batch switch arm
+
+gcc -S test.c -o test.s
+clang -S test.c -o test-clang.s
+clang -emit-llvm -S test.c -o test.ll
+
