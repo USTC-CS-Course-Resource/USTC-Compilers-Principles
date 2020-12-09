@@ -1,39 +1,39 @@
 	.file	"fact.c"
 	.text
-	.globl	f2
-	.type	f2, @function
+	.globl	f2						; 全局符号
+	.type	f2, @function			; 类型为函数
 f2:
 .LFB0:
-	.cfi_startproc
-	pushq	%rbp
+	.cfi_startproc					
+	pushq	%rbp					; 基址寄存器入栈
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	movq	%rsp, %rbp				; %rbp = %rsp
 	.cfi_def_cfa_register 6
-	subq	$16, %rsp
-	movl	%edi, -4(%rbp)
-	movl	-4(%rbp), %eax
-	movl	%eax, m.2248(%rip)
-	movl	m.2248(%rip), %eax
-	testl	%eax, %eax
-	jne	.L2
-	movl	$1, %eax
-	jmp	.L3
+	subq	$16, %rsp				; 扩栈
+	movl	%edi, -4(%rbp)			; 存 n
+	movl	-4(%rbp), %eax			; %eax = n
+	movl	%eax, m.2248(%rip)		; m = n
+	movl	m.2248(%rip), %eax		; %eax = m
+	testl	%eax, %eax				; 
+	jne	.L2							; 如不相等则跳转到 .L2
+	movl	$1, %eax				; 准备返回值
+	jmp	.L3							; 跳转到返回
 .L2:
-	movl	m.2248(%rip), %eax
-	subl	$1, %eax
-	movl	%eax, %edi
-	call	f2
-	movl	%eax, %edx
-	movl	m.2248(%rip), %eax
-	imull	%edx, %eax
+	movl	m.2248(%rip), %eax		; %eax = m
+	subl	$1, %eax				; 求 m-1
+	movl	%eax, %edi				; 通过 %edi 传参
+	call	f2						; 调用函数
+	movl	%eax, %edx				; 取返回值
+	movl	m.2248(%rip), %eax		; 取 m
+	imull	%edx, %eax				; 计算 m*f2(m-1)
 .L3:
-	leave
+	leave							
 	.cfi_def_cfa 7, 8
-	ret
+	ret								; 返回
 	.cfi_endproc
 .LFE0:
-	.size	f2, .-f2
+	.size	f2, .-f2				; 符号大小
 	.globl	f1
 	.type	f1, @function
 f1:
@@ -119,16 +119,16 @@ main:
 	pushq	%rbx
 	subq	$8, %rsp
 	.cfi_offset 3, -24
-	movl	$3, %edi
-	call	f2
-	movl	%eax, %ebx
-	movl	$3, %edi
-	call	f1
-	movl	%ebx, %edx
-	movl	%eax, %esi
-	movl	$.LC0, %edi
-	movl	$0, %eax
-	call	printf
+	movl	$3, %edi		; 准备参数 3
+	call	f2				; 调用 f2
+	movl	%eax, %ebx		; %ebx = f2(3)
+	movl	$3, %edi		; 准备参数 3
+	call	f1				; 调用 f1
+	movl	%ebx, %edx		; %edx = f3(3)
+	movl	%eax, %esi		; 准备参数 f(2)
+	movl	$.LC0, %edi		; 准备参数 "%d, %d"
+	movl	$0, %eax		; 
+	call	printf			; 调用 printf
 	movl	$0, %eax
 	addq	$8, %rsp
 	popq	%rbx

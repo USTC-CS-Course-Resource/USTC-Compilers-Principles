@@ -8,32 +8,32 @@ target triple = "aarch64-unknown-linux-gnu"
 @.str = private unnamed_addr constant [7 x i8] c"%d, %d\00", align 1
 
 ; Function Attrs: noinline nounwind optnone
-define dso_local i32 @f2(i32 %0) #0 {
-  %2 = alloca i32, align 4
-  %3 = alloca i32, align 4
-  store i32 %0, i32* %3, align 4
-  %4 = load i32, i32* %3, align 4
-  store i32 %4, i32* @f2.m, align 4
-  %5 = load i32, i32* @f2.m, align 4
-  %6 = icmp eq i32 %5, 0
-  br i1 %6, label %7, label %8
+define dso_local i32 @f2(i32 %0) #0 {     ; 函数声明
+  %2 = alloca i32, align 4                ; 分配空间给 返回值
+  %3 = alloca i32, align 4                ; 分配空间给 n
+  store i32 %0, i32* %3, align 4          ; 存 n
+  %4 = load i32, i32* %3, align 4         ; 取 n
+  store i32 %4, i32* @f2.m, align 4       ; 存 n 到静态变量 @f2.m
+  %5 = load i32, i32* @f2.m, align 4      ; 读 @f2.m 到 %5
+  %6 = icmp eq i32 %5, 0                  ; 判 m == 0
+  br i1 %6, label %7, label %8            ; 跳转
 
 7:                                                ; preds = %1
-  store i32 1, i32* %2, align 4
-  br label %14
+  store i32 1, i32* %2, align 4           ; 存 1 到 %2
+  br label %14                            ; 跳转到 return 1
 
 8:                                                ; preds = %1
-  %9 = load i32, i32* @f2.m, align 4
-  %10 = load i32, i32* @f2.m, align 4
-  %11 = sub nsw i32 %10, 1
-  %12 = call i32 @f2(i32 %11)
-  %13 = mul nsw i32 %9, %12
-  store i32 %13, i32* %2, align 4
-  br label %14
+  %9 = load i32, i32* @f2.m, align 4      ; 取 @f2.m 到 %9
+  %10 = load i32, i32* @f2.m, align 4     ; 取 @f2.m 到 %10
+  %11 = sub nsw i32 %10, 1                ; 求 n-1
+  %12 = call i32 @f2(i32 %11)             ; 调用 f2(n-1)
+  %13 = mul nsw i32 %9, %12               ; n*f2(n-1)
+  store i32 %13, i32* %2, align 4         ; 存计算结果到返回值地址
+  br label %14                            ; 返回
 
 14:                                               ; preds = %8, %7
-  %15 = load i32, i32* %2, align 4
-  ret i32 %15
+  %15 = load i32, i32* %2, align 4        ; 读取返回值
+  ret i32 %15                             ; 返回
 }
 
 ; Function Attrs: noinline nounwind optnone
@@ -90,10 +90,11 @@ define dso_local i32 @f3() #0 {
 
 ; Function Attrs: noinline nounwind optnone
 define dso_local i32 @main() #0 {
-  %1 = call i32 @f1(i32 3)
-  %2 = call i32 @f2(i32 3)
+  %1 = call i32 @f1(i32 3)    ; 调用函数 f1(3)
+  %2 = call i32 @f2(i32 3)    ; 调用函数 f2(3)
+  ; 调用函数 printf
   %3 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @.str, i64 0, i64 0), i32 %1, i32 %2)
-  ret i32 0
+  ret i32 0                   ; 默认返回 0
 }
 
 declare dso_local i32 @printf(i8*, ...) #1
