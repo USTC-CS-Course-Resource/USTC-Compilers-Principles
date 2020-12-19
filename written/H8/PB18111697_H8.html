@@ -287,7 +287,60 @@ pre[data-line] .line-highlight[data-end]:after {
 </pre><p>&#x867D;&#x7136;&#x51FA;&#x73B0;long a[0][4]&#x8FD9;&#x6837;&#x7684;&#x58F0;&#x660E;, &#x4F46;&#x5728;x86/Linux&#x7CFB;&#x7EDF;&#x4E0A;, &#x7528;&#x7F16;&#x8BD1;&#x5668;GCC 7.5.0 (Ubuntu 7.5.0-3ubuntu1~16.04)&#x7F16;&#x8BD1;&#x65F6;, &#x8BE5;&#x7A0B;&#x5E8F;&#x80FD;&#x591F;&#x901A;&#x8FC7;&#x7F16;&#x8BD1;&#x5E76;&#x751F;&#x6210;&#x76EE;&#x6807;&#x4EE3;&#x7801;. &#x8BF7;&#x5728;&#x4F60;&#x81EA;&#x5DF1;&#x7684;&#x673A;&#x5668;&#x4E0A;&#x5B9E;&#x9A8C;, &#x56DE;&#x7B54;&#x4E0B;&#x9762;&#x4E24;&#x4E2A;&#x95EE;&#x9898;(&#x8BF4;&#x660E;&#x4F60;&#x4F7F;&#x7528;&#x7684;&#x7F16;&#x8BD1;&#x5668;&#x53CA;&#x7248;&#x672C;&#x5E76;&#x7ED9;&#x51FA;&#x6C47;&#x7F16;&#x7801;)&#xFF1A;<br>
 (a) sizeof(a)&#x7684;&#x503C;&#x662F;&#x591A;&#x5C11;, &#x8BF7;&#x8BF4;&#x660E;&#x7406;&#x7531;.<br>
 (b) a[0][0]&#x7684;&#x503C;&#x662F;&#x591A;&#x5C11;, &#x8BF7;&#x8BF4;&#x660E;&#x7406;&#x7531;.</p>
-<p>(a). sizeof(a)&#x7684;&#x503C;&#x662F;0, &#x56E0;&#x4E3A;&#x6570;&#x7EC4;a&#x7684;&#x5927;&#x5C0F;&#x4E3A; 0 * 4 = 0<br>
+<p>&#x6C47;&#x7F16;&#x7801;&#x5982;&#x4E0B;(GCC: (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0):</p>
+<pre data-role="codeBlock" data-info="s" class="language-s"><code>	.file	&quot;test.c&quot;
+	.text
+	.section	.rodata
+.LC0:
+	.string	&quot;%ld, %d\n&quot;
+	.text
+	.globl	main
+	.type	main, @function
+main:
+.LFB0:
+	.cfi_startproc
+	endbr64
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$32, %rsp
+	movq	%fs:40, %rax
+	movq	%rax, -8(%rbp)
+	xorl	%eax, %eax
+	movq	$4, -32(%rbp)
+	movq	$8, -24(%rbp)
+	movq	-16(%rbp), %rax
+	movq	%rax, %rdx
+	movl	$0, %esi
+	leaq	.LC0(%rip), %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	movl	$0, %eax
+	movq	-8(%rbp), %rcx
+	xorq	%fs:40, %rcx
+	je	.L3
+	call	__stack_chk_fail@PLT
+.L3:
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE0:
+	.size	main, .-main
+	.ident	&quot;GCC: (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0&quot;
+	.section	.note.GNU-stack,&quot;&quot;,@progbits
+	.section	.note.gnu.property,&quot;a&quot;
+	.align 8
+	.long	 1f - 0f
+	.long	 4f - 1f
+	.long	 5
+0:
+	.string	 &quot;GNU&quot;
+1:
+	.align 8
+</code></pre><p>(a). sizeof(a)&#x7684;&#x503C;&#x662F;0, &#x56E0;&#x4E3A;&#x6570;&#x7EC4;a&#x7684;&#x5927;&#x5C0F;&#x4E3A; 0 * 4 = 0<br>
 (b). a[0][0]&#x7684;&#x503C;&#x662F;&#x4E00;&#x4E2A;&#x4E0D;&#x5B9A;&#x503C;. &#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x5B9E;&#x9645;&#x4E0A;&#x867D;&#x7136; a &#x5927;&#x5C0F;&#x4E3A;0, &#x4F46;&#x8FD8;&#x662F;&#x6709;&#x5B83;&#x7684;&#x6808;&#x7A7A;&#x95F4;(-16(%rbp)), &#x56E0;&#x6B64;&#x8F93;&#x51FA;&#x4E86;&#x8FD9;&#x4E2A;&#x503C;.(&#x4E0B;&#x9762;&#x662F;&#x6C47;&#x7F16;&#x4EE3;&#x7801;&#x8282;&#x9009;)</p>
 <pre data-role="codeBlock" data-info="s" class="language-s"><code>movq    $4, -32(%rbp)   ; i = 4
 movq    $8, -24(%rbp)   ; j = 8
