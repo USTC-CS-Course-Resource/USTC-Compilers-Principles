@@ -1,0 +1,33 @@
+
+    // 多态关系的类间转换
+    printf("---------------多态关系的类间转换---------------\n");
+    // 1. static(<D> -> <B>) 转换了并且fun也变了
+    printf(format,
+        "1. static(<D> -> <B>)",
+        typeid(static_cast<B>(*pd)).name());
+    printf("\t"); static_cast<B>(*pd).fun();
+    // 2. static(<B> -> <D>) 这里需要用户自定义转换
+    printf(format,
+        "2. static(<B> -> <D>)",
+        typeid(static_cast<D>(*pb)).name());
+    printf("\t"); static_cast<D>(*pb).fun();
+    // 3. static(<D*> -> <B*>) 转换了但fun没变
+    printf(format,
+        "3. static(<D*> -> <B*>)",
+        typeid(static_cast<B*>(pd)).name());
+    printf("\t"); static_cast<B*>(pd)->fun();
+    // 4. static(<D*> -> <B*>) 转换了但fun()没变
+    printf(format,
+        "4. static(<B*> -> <D*>)",
+        typeid(static_cast<D*>(pb)).name());
+    printf("\t"); static_cast<D*>(pb)->fun();
+    // 5. static(<D&> -> <B&>) 转换失败, fun没变
+    printf(format,
+        "5. static(<D&> -> <B&>)",
+        typeid(static_cast<B&>(atd)).name());
+    printf("\t"); static_cast<B&>(atd).fun();
+    // 6. static(<D&> -> <B&>) 转换失败, fun没变
+    printf(format,
+        "6. static(<B&> -> <D&>)",
+        typeid(static_cast<D&>(atb)).name());
+    printf("\t"); static_cast<D&>(atb).fun();
