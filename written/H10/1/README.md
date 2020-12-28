@@ -132,14 +132,16 @@ _ZN6ClassDC1Eiii
 - `_Z`: 是 `mangled` 符号前缀
 - `N`: `nested names 的前缀, 后跟一系列的 <length, id>
 - `E`: 表示结束
+- `C1`: 是类的基构造函数
+- `C2`: 是实际构造函数. 这两点由汇编代码可以看出来 `.set	_ZN6ClassDC1Eiii,_ZN6ClassDC2Eiii`
 
 1. `_ZN6ClassAC1Ei` 被解析成了 `ClassA::ClassA(int)`
     - `6ClassA`: 表示类名 `ClassA`
-    - `C1`: 指示为类
+    - `C1`: 指示为类实际构造函数
     - `i`: 参数为一个 `int`
 2. `_ZN6ClassDC1Eiii` 被解析成了 `ClassD::ClassD(int, int, int)`
     - `6ClassD`: 表示类名 `ClassD`
-    - `C1`: 指示为类
+    - `C1`: 指示为类基构造函数
     - `iii`: 参数类型, `(int, int, int)`
 
 ## 2)
