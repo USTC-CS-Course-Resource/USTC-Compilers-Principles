@@ -1,0 +1,3 @@
+[submodule "labs/Final-Lab-MLIR"]
+	path = labs/Final-Lab-MLIR
+	url = git@github.com:code-nowww/2020-USTC-Compiler-Lab-MLIR.git
