@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.2.16)  12 MAR 2021 20:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.2.16)  12 MAR 2021 20:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**f:/Data/USTC-CS-Resources/CS/Compiler/USTC-Compilers-Principles/written/H7/PB18111697_H7.tex
-(f:/Data/USTC-CS-Resources/CS/Compiler/USTC-Compilers-Principles/written/H7/PB18111697_H7.tex
+**f:/Data/USTC-CS-Resources/CS/Compiler/USTC-Compilers-Principles/written/H5/PB18111697_H5.tex
+(f:/Data/USTC-CS-Resources/CS/Compiler/USTC-Compilers-Principles/written/H5/PB18111697_H5.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-02-06> (f:/App/texlive/2020/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
@@ -1027,8 +1027,8 @@ File: UTF8.bdg 2015/04/18 4.8.4
 File: UTF8.enc 2015/04/18 4.8.4
 ) (f:/App/texlive/2020/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
 File: UTF8.chr 2015/04/18 4.8.4
-) (f:/Data/USTC-CS-Resources/CS/Compiler/USTC-Compilers-Principles/written/H7/PB18111697_H7.aux)
-\openout1 = `PB18111697_H7.aux'.
+) (f:/Data/USTC-CS-Resources/CS/Compiler/USTC-Compilers-Principles/written/H5/PB18111697_H5.aux)
+\openout1 = `PB18111697_H5.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 174.
 LaTeX Font Info:    ... okay on input line 174.
@@ -1181,9 +1181,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 174.
 LaTeX Info: Redefining \pageref on input line 174.
 LaTeX Info: Redefining \nameref on input line 174.
- (f:/Data/USTC-CS-Resources/CS/Compiler/USTC-Compilers-Principles/written/H7/PB18111697_H7.out) (f:/Data/USTC-CS-Resources/CS/Compiler/USTC-Compilers-Principles/written/H7/PB18111697_H7.out)
+ (f:/Data/USTC-CS-Resources/CS/Compiler/USTC-Compilers-Principles/written/H5/PB18111697_H5.out) (f:/Data/USTC-CS-Resources/CS/Compiler/USTC-Compilers-Principles/written/H5/PB18111697_H5.out)
 \@outlinefile=\write6
-\openout6 = `PB18111697_H7.out'.
+\openout6 = `PB18111697_H5.out'.
 
 
 
@@ -1208,11 +1208,18 @@ File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
 )
 
 LaTeX Font Warning: Font shape `U/wasy/m/n' in size <10.53937> not available
-(Font)              size <10.95> substituted on input line 198.
+(Font)              size <10.95> substituted on input line 178.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 204--206
+Underfull \hbox (badness 10000) in paragraph at lines 183--184
 
+ []
+
+Package CJKpunct Info: use punctuation spaces for family 'rm' with punctstyle (quanjiao) on input line 192.
+
+Overfull \hbox (3.15677pt too wide) in paragraph at lines 192--193
+\C70/rm/m/n/10.53937/7e ü \C70/rm/m/n/10.53937/4e 
+\OT1/cmr/m/n/10.53937 : \C70/rm/m/n/10.53937/75 ($\OML/cmm/m/it/10.53937 first$\OT1/cmr/m/n/10.53937 (\C70/rm/m/n/10.53937/7e ç \C70/rm/m/n/10.53937/62 ^^? \C70/rm/m/n/10.53937/5c ^ \C70/rm/m/n/10.53937/60 '\OT1/cmr/m/n/10.53937 )\C70/rm/m/n/10.53937/54 Œ$\OML/cmm/m/it/10.53937 last$\OT1/cmr/m/n/10.53937 (\C70/rm/m/n/10.53937/7e ü \C70/rm/m/n/10.53937/54 ^^H \C70/rm/m/n/10.53937/5c ^ \C70/rm/m/n/10.53937/60 '\OT1/cmr/m/n/10.53937 )\C70/rm/m/n/10.53937/88 h \C70/rm/m/n/10.53937/79 : \C70/rm/m/n/10.53937/4e ^^@ * \C70/rm/m/n/10.53937/65 ‡ \C70/rm/m/n/10.53937/6c Õ \C70/rm/m/n/10.53937/7b & \C70/rm/m/n/10.53937/53 ÷ \C70/rm/m/n/10.53937/76 „ \C70/rm/m/n/10.53937/7b , \C70/rm/m/n/10.53937/4e ^^@ * \C70/rm/m/n/10.53937/5b W \C70/rm/m/n/10.53937/7b & \C70/rm/m/n/10.53937/54 Œ \C70/rm/m/n/10.53937/67 ^^@ \C70/rm/m/n/10.53937/54 ^^N \C70/rm/m/n/10.53937/4e ^^@ * \C70/rm/m/n/10.53937/5b W \C70/rm/m/n/10.53937/7b & \C70/rm/m/n/10.53937/76 „ \C70/rm/m/n/10.53937/4f M \C70/rm/m/n/10.53937/7f n|\C70/rm/m/n/10.53937/ff ^^L|  \C70/rm/m/n/10.53937/5e v \C70/rm/m/n/10.53937/52   \C70/rm/m/n/10.53937/51 e \C70/rm/m/n/10.53937/4e ^^@ *$\OML/cmm/m/it/10.53937 S[] \OMS/cmsy/m/n/10.53937 !
  []
 
 (f:/App/texlive/2020/texmf-dist/tex/generic/ctex/zhmap/ctex-zhmap-windows.tex
@@ -1220,31 +1227,39 @@ File: ctex-zhmap-windows.tex 2020/10/19 v2.5.5 Windows font map loader for pdfTe
 {f:/App/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{UGBK.sfd}{Unicode.sfd}) [1
 
 ] [2]
-Underfull \hbox (badness 10000) in paragraph at lines 270--273
-
- []
-
-[3] [4] (f:/Data/USTC-CS-Resources/CS/Compiler/USTC-Compilers-Principles/written/H7/PB18111697_H7.aux)
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 262.
+ (f:/App/texlive/2020/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <7.52812> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 262.
+LaTeX Font Info:    Trying to load font information for OML+cmr on input line 271.
+ (f:/App/texlive/2020/texmf-dist/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <7.52812> not available
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 271.
+ [3] (f:/Data/USTC-CS-Resources/CS/Compiler/USTC-Compilers-Principles/written/H5/PB18111697_H5.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.41063pt have occurred.
 
-Package rerunfilecheck Info: File `PB18111697_H7.out' has not changed.
+Package rerunfilecheck Info: File `PB18111697_H5.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 48291 strings out of 479302
- 1140696 string characters out of 5869224
- 1753226 words of memory out of 5000000
- 64491 multiletter control sequences out of 15000+600000
- 436504 words of font info for 150 fonts, out of 8000000 for 9000
+ 48668 strings out of 479302
+ 1148616 string characters out of 5869224
+ 2000226 words of memory out of 5000000
+ 64796 multiletter control sequences out of 15000+600000
+ 442583 words of font info for 172 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 87i,7n,90p,1664b,729s stack positions out of 5000i,500n,10000p,200000b,80000s
-<c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc>{f:/App/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><f:/App/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb>
-Output written on f:/Data/USTC-CS-Resources/CS/Compiler/USTC-Compilers-Principles/written/H7/PB18111697_H7.pdf (4 pages, 358462 bytes).
+ 87i,13n,90p,1664b,1037s stack positions out of 5000i,500n,10000p,200000b,80000s
+{f:/App/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><f:/App/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx0700.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on f:/Data/USTC-CS-Resources/CS/Compiler/USTC-Compilers-Principles/written/H5/PB18111697_H5.pdf (3 pages, 403502 bytes).
 PDF statistics:
- 387 PDF objects out of 1000 (max. 8388607)
- 249 compressed objects within 3 object streams
- 30 named destinations out of 1000 (max. 500000)
- 309 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 489 PDF objects out of 1000 (max. 8388607)
+ 334 compressed objects within 4 object streams
+ 64 named destinations out of 1000 (max. 500000)
+ 317 words of extra memory for PDF output out of 10000 (max. 10000000)
 
